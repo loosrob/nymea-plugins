@@ -52,7 +52,6 @@ PLUGIN_DIRS = \
     serialportcommander \
     simulation          \
     sma                 \
-    snapd               \
     somfytahoma         \
     sonos               \
     sunposition         \
