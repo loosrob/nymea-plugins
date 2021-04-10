@@ -1216,6 +1216,14 @@
                             "defaultValue": false
                         }
                     ]
+                },
+                {
+                    "id": "37bb0fba-4b32-4dc7-99e3-bafb51cd7016",
+                    "name": "cleaningRobot",
+                    "displayName": "Cleaning robot",
+                    "createMethods": ["user"],
+                    "interfaces": []
+
                 }
             ]
         }
