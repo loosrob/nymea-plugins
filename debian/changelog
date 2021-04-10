@@ -1,7 +1,31 @@
-nymea-plugins (0.27.0) UNRELEASED; urgency=medium
+nymea-plugins (0.27.0) xenial; urgency=medium
 
 
- -- Michael Zanetti <michael.zanetti@nymea.io>  Thu, 04 Mar 2021 00:14:37 +0100
+  [ Bernhard Trinnes ]
+  * WIP: New plugin: Luke Roberts
+  * New PlugIn: SMA
+
+  [ Simon Stürz ]
+  * Nuki: Add support for Nuki 2.0
+
+  [ Michael Zanetti ]
+  * 0.27
+  * Update to new battery interface
+  * Replace CONFIG+=selection PLUGINS+=... with WITH_PLUGINS=...
+  * WIP: New plugin: Neato botvac
+  * GenericThings: Add a generic presense sensor
+
+  [ Christian Fetzer ]
+  * somfytahoma: Fix credential encoding
+
+  [ Michael Zanetti ]
+  * ZigbeeGeneric: Add support for ZigBee door/window sensors
+  * Telegram: Fix small cosmetic issue during setup and improve readme
+
+  [ Christian Fetzer ]
+  * somfytahoma: Add support for awnings and lights
+
+ -- Jenkins <jenkins@nymea.io>  Sun, 11 Apr 2021 01:09:45 +0200
 
 nymea-plugins (0.26.0) xenial; urgency=medium
 
