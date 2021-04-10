@@ -34,6 +34,7 @@ PLUGIN_DIRS = \
     lukeroberts         \
     mailnotification    \
     mqttclient          \
+    neatobotvac         \
     nanoleaf            \
     netatmo             \
     networkdetector     \
