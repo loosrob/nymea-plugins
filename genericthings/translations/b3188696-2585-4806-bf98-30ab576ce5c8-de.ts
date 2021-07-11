@@ -250,7 +250,9 @@ The name of the EventType ({fed37466-1264-4ac1-84fd-aff3a1f7ff04}) of ThingClass
     </message>
     <message>
         <source>Maximum temperature</source>
-        <extracomment>The name of the ParamType (ThingClass: temperatureSensor, Type: settings, ID: {8b5947ab-127f-4995-853b-eeeb628811e3})</extracomment>
+        <extracomment>The name of the ParamType (ThingClass: thermostat, Type: settings, ID: {85608dd5-7e67-4c98-9e62-b97411681048})
+----------
+The name of the ParamType (ThingClass: temperatureSensor, Type: settings, ID: {8b5947ab-127f-4995-853b-eeeb628811e3})</extracomment>
         <translation>Maximale Temperatur</translation>
     </message>
     <message>
@@ -265,7 +267,9 @@ The name of the EventType ({fed37466-1264-4ac1-84fd-aff3a1f7ff04}) of ThingClass
     </message>
     <message>
         <source>Minimum temperature</source>
-        <extracomment>The name of the ParamType (ThingClass: temperatureSensor, Type: settings, ID: {c86ae5d3-9335-4b6e-8231-bf3ed6670dff})</extracomment>
+        <extracomment>The name of the ParamType (ThingClass: thermostat, Type: settings, ID: {67451c97-50e1-4ea6-ac43-4386fbd26698})
+----------
+The name of the ParamType (ThingClass: temperatureSensor, Type: settings, ID: {c86ae5d3-9335-4b6e-8231-bf3ed6670dff})</extracomment>
         <translation>Minimale Temperatur</translation>
     </message>
     <message>
@@ -394,6 +398,12 @@ The name of the EventType ({181df603-d45f-4d3d-a358-97aa3e4ac0bd}) of ThingClass
         <extracomment>The name of the ParamType (ThingClass: extendedSmartMeterConsumer, EventType: currentPower, ID: {5983d714-5f80-42d8-bee2-9228b6382b3b})
 ----------
 The name of the StateType ({5983d714-5f80-42d8-bee2-9228b6382b3b}) of ThingClass extendedSmartMeterConsumer
+----------
+The name of the ParamType (ThingClass: ventilationFlow, ActionType: power, ID: {adf9a8dd-da13-4070-a3bd-9d4be26ebcd1})
+----------
+The name of the ParamType (ThingClass: ventilationFlow, EventType: power, ID: {adf9a8dd-da13-4070-a3bd-9d4be26ebcd1})
+----------
+The name of the StateType ({adf9a8dd-da13-4070-a3bd-9d4be26ebcd1}) of ThingClass ventilationFlow
 ----------
 The name of the ParamType (ThingClass: ventilation, ActionType: power, ID: {846711b7-ea5a-4c66-a267-001c60406509})
 ----------
@@ -594,14 +604,18 @@ The name of the StateType ({d0b6c4be-339e-4b0f-a234-0611b7565395}) of ThingClass
     </message>
     <message>
         <source>Turn on or off</source>
-        <extracomment>The name of the ActionType ({846711b7-ea5a-4c66-a267-001c60406509}) of ThingClass ventilation
+        <extracomment>The name of the ActionType ({adf9a8dd-da13-4070-a3bd-9d4be26ebcd1}) of ThingClass ventilationFlow
+----------
+The name of the ActionType ({846711b7-ea5a-4c66-a267-001c60406509}) of ThingClass ventilation
 ----------
 The name of the ActionType ({0212a287-c5ae-4644-8803-adfdd8caeb9a}) of ThingClass irrigation</extracomment>
         <translation>Schalte ein oder aus</translation>
     </message>
     <message>
         <source>Turned on or off</source>
-        <extracomment>The name of the EventType ({846711b7-ea5a-4c66-a267-001c60406509}) of ThingClass ventilation
+        <extracomment>The name of the EventType ({adf9a8dd-da13-4070-a3bd-9d4be26ebcd1}) of ThingClass ventilationFlow
+----------
+The name of the EventType ({846711b7-ea5a-4c66-a267-001c60406509}) of ThingClass ventilation
 ----------
 The name of the EventType ({0212a287-c5ae-4644-8803-adfdd8caeb9a}) of ThingClass irrigation</extracomment>
         <translation>Ein- oder Ausgeschalten</translation>
@@ -812,15 +826,6 @@ The name of the StateType ({e645a979-1465-4592-b8b0-f4c123db0800}) of ThingClass
         <translation>Generisches Thermostat</translation>
     </message>
     <message>
-        <source>On/off</source>
-        <extracomment>The name of the ParamType (ThingClass: thermostat, ActionType: power, ID: {1f6a0c39-4417-4e31-86db-9926cf81c345})
-----------
-The name of the ParamType (ThingClass: thermostat, EventType: power, ID: {1f6a0c39-4417-4e31-86db-9926cf81c345})
-----------
-The name of the StateType ({1f6a0c39-4417-4e31-86db-9926cf81c345}) of ThingClass thermostat</extracomment>
-        <translation>Ein/aus</translation>
-    </message>
-    <message>
         <source>Set target temperature</source>
         <extracomment>The name of the ActionType ({60169ebf-c1e3-41ed-a1bb-4b858e93ec50}) of ThingClass thermostat</extracomment>
         <translation>Setze Zieltemperatur</translation>
@@ -840,16 +845,6 @@ The name of the StateType ({60169ebf-c1e3-41ed-a1bb-4b858e93ec50}) of ThingClass
         <translation>Zieltemperature geändert</translation>
     </message>
     <message>
-        <source>Turn on/off</source>
-        <extracomment>The name of the ActionType ({1f6a0c39-4417-4e31-86db-9926cf81c345}) of ThingClass thermostat</extracomment>
-        <translation>Schalte ein/aus</translation>
-    </message>
-    <message>
-        <source>Turned on/off</source>
-        <extracomment>The name of the EventType ({1f6a0c39-4417-4e31-86db-9926cf81c345}) of ThingClass thermostat</extracomment>
-        <translation>Ein/aus geschalten</translation>
-    </message>
-    <message>
         <source>Set temperature sensor input</source>
         <extracomment>The name of the ActionType ({0f808803-0e63-47df-b024-9685998ba663}) of ThingClass thermostat</extracomment>
         <translation>Setze Temperatursensoreingang</translation>
@@ -861,9 +856,9 @@ The name of the StateType ({60169ebf-c1e3-41ed-a1bb-4b858e93ec50}) of ThingClass
     </message>
     <message>
         <source>Temperature sensor input</source>
-        <extracomment>The name of the ParamType (ThingClass: thermostat, ActionType: temperatureSensorInput, ID: {0f808803-0e63-47df-b024-9685998ba663})
+        <extracomment>The name of the ParamType (ThingClass: thermostat, ActionType: temperature, ID: {0f808803-0e63-47df-b024-9685998ba663})
 ----------
-The name of the ParamType (ThingClass: thermostat, EventType: temperatureSensorInput, ID: {0f808803-0e63-47df-b024-9685998ba663})
+The name of the ParamType (ThingClass: thermostat, EventType: temperature, ID: {0f808803-0e63-47df-b024-9685998ba663})
 ----------
 The name of the StateType ({0f808803-0e63-47df-b024-9685998ba663}) of ThingClass thermostat</extracomment>
         <translation>Temperatursensoreingang</translation>
@@ -954,49 +949,343 @@ The name of the StateType ({caf22937-fdf7-41e1-a87b-d11e66c4f4c6}) of ThingClass
 The name of the ParamType (ThingClass: doorSensor, EventType: closed, ID: {7f5fdc2b-7916-4e90-9c24-558162304f71})
 ----------
 The name of the StateType ({7f5fdc2b-7916-4e90-9c24-558162304f71}) of ThingClass doorSensor</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Geschlossen</translation>
     </message>
     <message>
         <source>Gerneric door or window sensor</source>
         <extracomment>The name of the ThingClass ({2d936f56-48ee-4be1-9b3e-28a335ad8085})</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Opned or closed</source>
-        <extracomment>The name of the EventType ({7f5fdc2b-7916-4e90-9c24-558162304f71}) of ThingClass doorSensor</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Generischer Tür- und Fenstersensor</translation>
     </message>
     <message>
         <source>Set open or closed</source>
         <extracomment>The name of the ActionType ({7f5fdc2b-7916-4e90-9c24-558162304f71}) of ThingClass doorSensor</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Setze offen oder geschlossen</translation>
     </message>
     <message>
         <source>Generic light sensor</source>
         <extracomment>The name of the ThingClass ({d4d873fd-f0fc-433f-b615-91c1506a1890})</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Generischer Lichtsensor</translation>
     </message>
     <message>
         <source>Light intensity</source>
         <extracomment>The name of the ParamType (ThingClass: lightSensor, EventType: lightIntensity, ID: {fe12ef32-9f2f-41cd-acb7-6b8e4acffa3b})
 ----------
 The name of the StateType ({fe12ef32-9f2f-41cd-acb7-6b8e4acffa3b}) of ThingClass lightSensor</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Helligkeit</translation>
     </message>
     <message>
         <source>Light intensity changed</source>
         <extracomment>The name of the EventType ({fe12ef32-9f2f-41cd-acb7-6b8e4acffa3b}) of ThingClass lightSensor</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Helligkeit geändert</translation>
     </message>
     <message>
         <source>Maximum Lux</source>
         <extracomment>The name of the ParamType (ThingClass: lightSensor, Type: settings, ID: {7fe74404-d7f0-41af-a8d4-dd1bda27f752})</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Höchster Lux-Wert</translation>
     </message>
     <message>
         <source>Minimum Lux</source>
         <extracomment>The name of the ParamType (ThingClass: lightSensor, Type: settings, ID: {6dea7384-b079-443b-8cc2-1479138fa212})</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Tiefster Lux-Wert</translation>
+    </message>
+    <message>
+        <source>Cooler on/off</source>
+        <extracomment>The name of the ParamType (ThingClass: cooling, ActionType: power, ID: {918cfd2c-6692-4faa-acc6-18ebf93611ec})
+----------
+The name of the ParamType (ThingClass: cooling, EventType: power, ID: {918cfd2c-6692-4faa-acc6-18ebf93611ec})
+----------
+The name of the StateType ({918cfd2c-6692-4faa-acc6-18ebf93611ec}) of ThingClass cooling</extracomment>
+        <translation>Kühlung an/aus</translation>
+    </message>
+    <message>
+        <source>Cooler turned on/off</source>
+        <extracomment>The name of the EventType ({918cfd2c-6692-4faa-acc6-18ebf93611ec}) of ThingClass cooling</extracomment>
+        <translation>Kühlung ein- oder ausgeschaltet</translation>
+    </message>
+    <message>
+        <source>Cooling On/off</source>
+        <extracomment>The name of the ParamType (ThingClass: thermostat, ActionType: coolingOn, ID: {cab7d4bd-f612-4d12-b3a4-0649e189810f})
+----------
+The name of the ParamType (ThingClass: thermostat, EventType: coolingOn, ID: {cab7d4bd-f612-4d12-b3a4-0649e189810f})
+----------
+The name of the StateType ({cab7d4bd-f612-4d12-b3a4-0649e189810f}) of ThingClass thermostat</extracomment>
+        <translation>Kühlung ein/aus</translation>
+    </message>
+    <message>
+        <source>Cooling turned on/off</source>
+        <extracomment>The name of the EventType ({cab7d4bd-f612-4d12-b3a4-0649e189810f}) of ThingClass thermostat</extracomment>
+        <translation>Kühlung ein- oder ausgeschaltet</translation>
+    </message>
+    <message>
+        <source>Generic cooler</source>
+        <extracomment>The name of the ThingClass ({09edbc07-d382-48a4-9b16-99992014aff9})</extracomment>
+        <translation>Generische Kühlung</translation>
+    </message>
+    <message>
+        <source>Generic presence sensor</source>
+        <extracomment>The name of the ThingClass ({339a0c54-4086-404f-8d36-bcf20621b785})</extracomment>
+        <translation>Generischer Anwesenheitssensor</translation>
+    </message>
+    <message>
+        <source>Heating On/off</source>
+        <extracomment>The name of the ParamType (ThingClass: thermostat, ActionType: heatingOn, ID: {1f6a0c39-4417-4e31-86db-9926cf81c345})
+----------
+The name of the ParamType (ThingClass: thermostat, EventType: heatingOn, ID: {1f6a0c39-4417-4e31-86db-9926cf81c345})
+----------
+The name of the StateType ({1f6a0c39-4417-4e31-86db-9926cf81c345}) of ThingClass thermostat</extracomment>
+        <translation>Heizung ein/aus</translation>
+    </message>
+    <message>
+        <source>Heating turned on/off</source>
+        <extracomment>The name of the EventType ({1f6a0c39-4417-4e31-86db-9926cf81c345}) of ThingClass thermostat</extracomment>
+        <translation>Heizung ein- oder ausgeschaltet</translation>
+    </message>
+    <message>
+        <source>Last seen time</source>
+        <extracomment>The name of the ParamType (ThingClass: presenceSensor, EventType: lastSeenTime, ID: {be4842cb-140c-425f-9630-8bb19fdb943e})
+----------
+The name of the StateType ({be4842cb-140c-425f-9630-8bb19fdb943e}) of ThingClass presenceSensor</extracomment>
+        <translation>Zuletzt gesehen</translation>
+    </message>
+    <message>
+        <source>Last seen time changed</source>
+        <extracomment>The name of the EventType ({be4842cb-140c-425f-9630-8bb19fdb943e}) of ThingClass presenceSensor</extracomment>
+        <translation>Zuletzt gesehen geändert</translation>
+    </message>
+    <message>
+        <source>Presence detected</source>
+        <extracomment>The name of the ParamType (ThingClass: presenceSensor, ActionType: isPresent, ID: {22c1eac6-9bb5-4cc1-ac0d-e3e1499edd3c})
+----------
+The name of the ParamType (ThingClass: presenceSensor, EventType: isPresent, ID: {22c1eac6-9bb5-4cc1-ac0d-e3e1499edd3c})
+----------
+The name of the StateType ({22c1eac6-9bb5-4cc1-ac0d-e3e1499edd3c}) of ThingClass presenceSensor</extracomment>
+        <translation>Anwesenheit erkannt</translation>
+    </message>
+    <message>
+        <source>Presense changed</source>
+        <extracomment>The name of the EventType ({22c1eac6-9bb5-4cc1-ac0d-e3e1499edd3c}) of ThingClass presenceSensor</extracomment>
+        <translation>Anwesenheit geändert</translation>
+    </message>
+    <message>
+        <source>Set presence</source>
+        <extracomment>The name of the ActionType ({22c1eac6-9bb5-4cc1-ac0d-e3e1499edd3c}) of ThingClass presenceSensor</extracomment>
+        <translation>Setze Anwesenheit</translation>
+    </message>
+    <message>
+        <source>Turn cooler on/off</source>
+        <extracomment>The name of the ActionType ({918cfd2c-6692-4faa-acc6-18ebf93611ec}) of ThingClass cooling</extracomment>
+        <translation>Kühlung ein- oder ausschalten</translation>
+    </message>
+    <message>
+        <source>Turn cooling on/off</source>
+        <extracomment>The name of the ActionType ({cab7d4bd-f612-4d12-b3a4-0649e189810f}) of ThingClass thermostat</extracomment>
+        <translation>Kühlung ein- oder ausschalten</translation>
+    </message>
+    <message>
+        <source>Turn heating on/off</source>
+        <extracomment>The name of the ActionType ({1f6a0c39-4417-4e31-86db-9926cf81c345}) of ThingClass thermostat</extracomment>
+        <translation>Heizung ein- oder ausschalten</translation>
+    </message>
+    <message>
+        <source>Opened or closed</source>
+        <extracomment>The name of the EventType ({7f5fdc2b-7916-4e90-9c24-558162304f71}) of ThingClass doorSensor</extracomment>
+        <translation>Geöffnet oder geschlossen</translation>
+    </message>
+    <message>
+        <source>Battery critical</source>
+        <extracomment>The name of the ParamType (ThingClass: battery, EventType: batteryCritical, ID: {e95dc037-002d-40a2-8c15-cd5489bd354a})
+----------
+The name of the StateType ({e95dc037-002d-40a2-8c15-cd5489bd354a}) of ThingClass battery</extracomment>
+        <translation>Batterieladung kritisch</translation>
+    </message>
+    <message>
+        <source>Battery level</source>
+        <extracomment>The name of the ParamType (ThingClass: battery, EventType: batteryLevel, ID: {d37eed4a-befc-40d4-b435-40a761f99314})
+----------
+The name of the StateType ({d37eed4a-befc-40d4-b435-40a761f99314}) of ThingClass battery</extracomment>
+        <translation>Batterieladung</translation>
+    </message>
+    <message>
+        <source>Battery level changed</source>
+        <extracomment>The name of the EventType ({d37eed4a-befc-40d4-b435-40a761f99314}) of ThingClass battery</extracomment>
+        <translation>Batterieladung geändert</translation>
+    </message>
+    <message>
+        <source>Battery level control</source>
+        <extracomment>The name of the ParamType (ThingClass: battery, ActionType: batteryLevelControl, ID: {3336f0c2-158b-4353-b74f-f1bb9c4e8447})
+----------
+The name of the ParamType (ThingClass: battery, EventType: batteryLevelControl, ID: {3336f0c2-158b-4353-b74f-f1bb9c4e8447})
+----------
+The name of the StateType ({3336f0c2-158b-4353-b74f-f1bb9c4e8447}) of ThingClass battery</extracomment>
+        <translation>Batterieladungssteuerung</translation>
+    </message>
+    <message>
+        <source>Battery level control changed</source>
+        <extracomment>The name of the EventType ({3336f0c2-158b-4353-b74f-f1bb9c4e8447}) of ThingClass battery</extracomment>
+        <translation>Batterieladungssteuerung geändert</translation>
+    </message>
+    <message>
+        <source>Charging</source>
+        <extracomment>The name of the ParamType (ThingClass: battery, ActionType: charging, ID: {a61c0328-b982-46a5-9cc0-b4fa4d0ab84d})
+----------
+The name of the ParamType (ThingClass: battery, EventType: charging, ID: {a61c0328-b982-46a5-9cc0-b4fa4d0ab84d})
+----------
+The name of the StateType ({a61c0328-b982-46a5-9cc0-b4fa4d0ab84d}) of ThingClass battery</extracomment>
+        <translation>Ladend</translation>
+    </message>
+    <message>
+        <source>Generic battery</source>
+        <extracomment>The name of the ThingClass ({81418556-cae3-4803-aa0c-9c4b3304a3eb})</extracomment>
+        <translation>Generische Batterie</translation>
+    </message>
+    <message>
+        <source>Critical battery level</source>
+        <extracomment>The name of the ParamType (ThingClass: battery, Type: settings, ID: {8d875cb7-3a14-42d1-bf1b-759e5fd95a8f})</extracomment>
+        <translation>Kritischer Batteriewert</translation>
+    </message>
+    <message>
+        <source>Battery entered or left critical state</source>
+        <extracomment>The name of the EventType ({e95dc037-002d-40a2-8c15-cd5489bd354a}) of ThingClass battery</extracomment>
+        <translation>Batterieladung kritisch geändert</translation>
+    </message>
+    <message>
+        <source>Charging started or stopped</source>
+        <extracomment>The name of the EventType ({a61c0328-b982-46a5-9cc0-b4fa4d0ab84d}) of ThingClass battery</extracomment>
+        <translation>Laden gestartet oder beendet</translation>
+    </message>
+    <message>
+        <source>Set battery level</source>
+        <extracomment>The name of the ActionType ({3336f0c2-158b-4353-b74f-f1bb9c4e8447}) of ThingClass battery</extracomment>
+        <translation>Setze Batterieladung</translation>
+    </message>
+    <message>
+        <source>Set charging</source>
+        <extracomment>The name of the ActionType ({a61c0328-b982-46a5-9cc0-b4fa4d0ab84d}) of ThingClass battery</extracomment>
+        <translation>Setze Laden</translation>
+    </message>
+    <message>
+        <source>Analog input</source>
+        <extracomment>The name of the ParamType (ThingClass: generic, ActionType: analogInput, ID: {810fcd3c-7854-4bb1-82f6-1403ba54875e})
+----------
+The name of the ParamType (ThingClass: generic, EventType: analogInput, ID: {810fcd3c-7854-4bb1-82f6-1403ba54875e})
+----------
+The name of the StateType ({810fcd3c-7854-4bb1-82f6-1403ba54875e}) of ThingClass generic</extracomment>
+        <translation>Analoger Eingang</translation>
+    </message>
+    <message>
+        <source>Analog input changed</source>
+        <extracomment>The name of the EventType ({810fcd3c-7854-4bb1-82f6-1403ba54875e}) of ThingClass generic</extracomment>
+        <translation>Analoger Eingang geändert</translation>
+    </message>
+    <message>
+        <source>Analog output</source>
+        <extracomment>The name of the ParamType (ThingClass: generic, ActionType: analogOutput, ID: {de8ec1b1-8026-4fd8-aefb-dedc07616aa4})
+----------
+The name of the ParamType (ThingClass: generic, EventType: analogOutput, ID: {de8ec1b1-8026-4fd8-aefb-dedc07616aa4})
+----------
+The name of the StateType ({de8ec1b1-8026-4fd8-aefb-dedc07616aa4}) of ThingClass generic</extracomment>
+        <translation>Analoger Ausgang</translation>
+    </message>
+    <message>
+        <source>Analog output changed</source>
+        <extracomment>The name of the EventType ({de8ec1b1-8026-4fd8-aefb-dedc07616aa4}) of ThingClass generic</extracomment>
+        <translation>Analoger Ausgang geändret</translation>
+    </message>
+    <message>
+        <source>Digital input</source>
+        <extracomment>The name of the ParamType (ThingClass: generic, ActionType: digitalInput, ID: {3cf5eb01-dae8-49cd-8c5f-b0224be0044f})
+----------
+The name of the ParamType (ThingClass: generic, EventType: digitalInput, ID: {3cf5eb01-dae8-49cd-8c5f-b0224be0044f})
+----------
+The name of the StateType ({3cf5eb01-dae8-49cd-8c5f-b0224be0044f}) of ThingClass generic</extracomment>
+        <translation>Digitaler Eingang</translation>
+    </message>
+    <message>
+        <source>Digital input changed</source>
+        <extracomment>The name of the EventType ({3cf5eb01-dae8-49cd-8c5f-b0224be0044f}) of ThingClass generic</extracomment>
+        <translation>Digitaler Eingang geändert</translation>
+    </message>
+    <message>
+        <source>Digital output</source>
+        <extracomment>The name of the ParamType (ThingClass: generic, ActionType: digitalOutput, ID: {605b4d8e-71a7-441e-900a-e07c305acd93})
+----------
+The name of the ParamType (ThingClass: generic, EventType: digitalOutput, ID: {605b4d8e-71a7-441e-900a-e07c305acd93})
+----------
+The name of the StateType ({605b4d8e-71a7-441e-900a-e07c305acd93}) of ThingClass generic</extracomment>
+        <translation>Digitaler Ausgang</translation>
+    </message>
+    <message>
+        <source>Digital output changed</source>
+        <extracomment>The name of the EventType ({605b4d8e-71a7-441e-900a-e07c305acd93}) of ThingClass generic</extracomment>
+        <translation>Digitaler Ausgang geändert</translation>
+    </message>
+    <message>
+        <source>Generic thing</source>
+        <extracomment>The name of the ThingClass ({f5c02d35-b06e-4950-8238-847d50cabfdf})</extracomment>
+        <translation>Generisches &quot;Thing&quot;</translation>
+    </message>
+    <message>
+        <source>Set analog input</source>
+        <extracomment>The name of the ActionType ({810fcd3c-7854-4bb1-82f6-1403ba54875e}) of ThingClass generic</extracomment>
+        <translation>Setze Analogen Eingang</translation>
+    </message>
+    <message>
+        <source>Set analog output</source>
+        <extracomment>The name of the ActionType ({de8ec1b1-8026-4fd8-aefb-dedc07616aa4}) of ThingClass generic</extracomment>
+        <translation>Setze analogen Ausgang</translation>
+    </message>
+    <message>
+        <source>Set digital input</source>
+        <extracomment>The name of the ActionType ({3cf5eb01-dae8-49cd-8c5f-b0224be0044f}) of ThingClass generic</extracomment>
+        <translation>Setze digitalen Eingang</translation>
+    </message>
+    <message>
+        <source>Set digital output</source>
+        <extracomment>The name of the ActionType ({605b4d8e-71a7-441e-900a-e07c305acd93}) of ThingClass generic</extracomment>
+        <translation>Setze digitalen Ausgang</translation>
+    </message>
+    <message>
+        <source>Set string state</source>
+        <extracomment>The name of the ActionType ({f477e227-0d2d-4d88-a545-7dedf36266d5}) of ThingClass generic</extracomment>
+        <translation>Setze Zeichenkette</translation>
+    </message>
+    <message>
+        <source>String state</source>
+        <extracomment>The name of the ParamType (ThingClass: generic, ActionType: stringState, ID: {f477e227-0d2d-4d88-a545-7dedf36266d5})
+----------
+The name of the ParamType (ThingClass: generic, EventType: stringState, ID: {f477e227-0d2d-4d88-a545-7dedf36266d5})
+----------
+The name of the StateType ({f477e227-0d2d-4d88-a545-7dedf36266d5}) of ThingClass generic</extracomment>
+        <translation>Zeichenkette</translation>
+    </message>
+    <message>
+        <source>String state changed</source>
+        <extracomment>The name of the EventType ({f477e227-0d2d-4d88-a545-7dedf36266d5}) of ThingClass generic</extracomment>
+        <translation>Zeichenkette geändert</translation>
+    </message>
+    <message>
+        <source>Air flow rate</source>
+        <extracomment>The name of the ParamType (ThingClass: ventilationFlow, ActionType: flowRate, ID: {5a273bba-0bef-49fb-870a-7f2df8fc14b6})
+----------
+The name of the ParamType (ThingClass: ventilationFlow, EventType: flowRate, ID: {5a273bba-0bef-49fb-870a-7f2df8fc14b6})
+----------
+The name of the StateType ({5a273bba-0bef-49fb-870a-7f2df8fc14b6}) of ThingClass ventilationFlow</extracomment>
+        <translation>Luftfluß</translation>
+    </message>
+    <message>
+        <source>Air flow rate changed</source>
+        <extracomment>The name of the EventType ({5a273bba-0bef-49fb-870a-7f2df8fc14b6}) of ThingClass ventilationFlow</extracomment>
+        <translation>Luftfluß geändert</translation>
+    </message>
+    <message>
+        <source>Generic ventilation with flow control</source>
+        <extracomment>The name of the ThingClass ({a7eec5f7-3cc3-4edb-baa7-1f6b6f935bf8})</extracomment>
+        <translation>Generische Lüftung mit Luftfluß-Regelung</translation>
+    </message>
+    <message>
+        <source>Set air flow rate</source>
+        <extracomment>The name of the ActionType ({5a273bba-0bef-49fb-870a-7f2df8fc14b6}) of ThingClass ventilationFlow</extracomment>
+        <translation type="unfinished">Luftfluß ändern</translation>
     </message>
 </context>
 <context>

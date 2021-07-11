@@ -1,3 +1,92 @@
+nymea-plugins (0.28.0) xenial; urgency=medium
+
+  [ Michael Zanetti ]
+  * Shelly: Add support for the Shelly motion sensor
+
+  [ Simon Stürz ]
+  * New Plugin: ZigbeeDevelco
+
+  [ Jenkins ]
+  * Neato: Bump cryptography from 3.3 to 3.3.2
+
+  [ Michael Zanetti ]
+  * 0.28
+  * GenericThings: Add a generic battery thing
+  * GenericThings: Add a totally generic thing
+
+  [ Simon Stürz ]
+  * ZigbeeDevelco: Add zigbee air quality sensor
+  * Fronius: Fix timer clean up on things removed and code cleaning
+  * New plugin: go-eCharger based on MQTT
+
+  [ Jenkins ]
+  * Fastcom: Bump urllib3 from 1.25.10 to 1.26.5
+  * Neato: Bump urllib3 from 1.26.3 to 1.26.5
+
+  [ Simon Stürz ]
+  * WakeOnLan: Add network device discovery
+  * Keba: Update discovery to nymea internal discovery mechanism
+
+  [ Simon Seres ]
+  * Add logging to awattar state "currentMarketPrice"
+
+  [ Michael Zanetti ]
+  * TP-Link Kasa: Add KP105
+  * GenericThing: Add a generic ventilation thing with flow control
+    support
+  * Update plugins to new smartmeter interface
+  * ReverseSSH: Reworked plugin
+  * Tado: Fix login url
+
+ -- Jenkins <jenkins@nymea.io>  Thu, 01 Jul 2021 17:07:31 +0200
+
+nymea-plugins (0.27.1) xenial; urgency=medium
+
+  [ Michael Zanetti ]
+  * Make includes more flexible
+  * Enable building on Ubuntu 21.04
+
+ -- Jenkins <jenkins@nymea.io>  Wed, 19 May 2021 18:25:48 +0200
+
+nymea-plugins (0.27.0) xenial; urgency=medium
+
+
+  [ Simon Stürz ]
+  * Nuki: Add support for Nuki 2.0
+
+  [ Bernhard Trinnes ]
+  * New Plugin: Tempo
+
+  [ Michael Zanetti ]
+  * 0.27
+  * Update to new battery interface
+  * Replace CONFIG+=selection PLUGINS+=... with WITH_PLUGINS=...
+  * New plugin: Neato botvac
+  * GenericThings: Add a generic presense sensor
+
+  [ Christian Fetzer ]
+  * somfytahoma: Fix credential encoding
+
+  [ Michael Zanetti ]
+  * ZigbeeGeneric: Add support for ZigBee door/window sensors
+  * Telegram: Fix small cosmetic issue during setup and improve readme
+
+  [ Christian Fetzer ]
+  * somfytahoma: Add support for awnings and lights
+
+  [ Michael Zanetti ]
+  * Simulation: Add a cleaning robot simulation
+  * Tasmota: Add support for the Sonoff Dimmer
+
+  [ Bernhard Trinnes ]
+  * OneWire Plugin: Add temperature and humidity sensor
+
+  [ Michael Zanetti ]
+  * Openweathermap: Update labels to be in line with other plugins
+  * Use pkgconfig to find nymea-mqtt
+
+ -- Jenkins <jenkins@nymea.io>  Wed, 28 Apr 2021 13:54:55 +0200
+
 nymea-plugins (0.26.0) xenial; urgency=medium
 
   [ Michael Zanetti ]

@@ -46,11 +46,11 @@ void IntegrationPluginSomfyTahoma::startPairing(ThingPairingInfo *info)
 
 void IntegrationPluginSomfyTahoma::confirmPairing(ThingPairingInfo *info, const QString &username, const QString &password)
 {
-    SomfyTahomaLoginRequest *request = new SomfyTahomaLoginRequest(hardwareManager()->networkManager(), username, password, this);
-    connect(request, &SomfyTahomaLoginRequest::error, info, [info](){
+    SomfyTahomaRequest *request = createSomfyTahomaLoginRequest(hardwareManager()->networkManager(), username, password, this);
+    connect(request, &SomfyTahomaRequest::error, info, [info](){
         info->finish(Thing::ThingErrorAuthenticationFailure, QT_TR_NOOP("Failed to login to Somfy Tahoma."));
     });
-    connect(request, &SomfyTahomaLoginRequest::finished, info, [this, info, username, password](const QVariant &/*result*/){
+    connect(request, &SomfyTahomaRequest::finished, info, [this, info, username, password](const QVariant &/*result*/){
         pluginStorage()->beginGroup(info->thingId().toString());
         pluginStorage()->setValue("username", username);
         pluginStorage()->setValue("password", password);
@@ -62,14 +62,14 @@ void IntegrationPluginSomfyTahoma::confirmPairing(ThingPairingInfo *info, const 
 void IntegrationPluginSomfyTahoma::setupThing(ThingSetupInfo *info)
 {
     if (info->thing()->thingClassId() == tahomaThingClassId) {
-        SomfyTahomaLoginRequest *request = createLoginRequestWithStoredCredentials(info->thing());
-        connect(request, &SomfyTahomaLoginRequest::error, info, [info](){
+        SomfyTahomaRequest *request = createLoginRequestWithStoredCredentials(info->thing());
+        connect(request, &SomfyTahomaRequest::error, info, [info](){
             info->finish(Thing::ThingErrorHardwareFailure, QT_TR_NOOP("Failed to login to Somfy Tahoma."));
         });
-        connect(request, &SomfyTahomaLoginRequest::finished, info, [this, info](const QVariant &/*result*/){
+        connect(request, &SomfyTahomaRequest::finished, info, [this, info](const QVariant &/*result*/){
             QUuid accountId = info->thing()->id();
-            SomfyTahomaGetRequest *request = new SomfyTahomaGetRequest(hardwareManager()->networkManager(), "/setup", this);
-            connect(request, &SomfyTahomaGetRequest::finished, this, [this, accountId](const QVariant &result){
+            SomfyTahomaRequest *request = createSomfyTahomaGetRequest(hardwareManager()->networkManager(), "/setup", this);
+            connect(request, &SomfyTahomaRequest::finished, this, [this, accountId](const QVariant &result){
                 QList<ThingDescriptor> unknownDevices;
                 foreach (const QVariant &gatewayVariant, result.toMap()["gateways"].toList()) {
                     QVariantMap gatewayMap = gatewayVariant.toMap();
@@ -119,6 +119,30 @@ void IntegrationPluginSomfyTahoma::setupThing(ThingSetupInfo *info)
                             descriptor.setParams(ParamList() << Param(garagedoorThingDeviceUrlParamTypeId, deviceUrl));
                             unknownDevices.append(descriptor);
                         }
+                    } else if (type == QStringLiteral("Awning")) {
+                        Thing *thing = myThings().findByParams(ParamList() << Param(awningThingDeviceUrlParamTypeId, deviceUrl));
+                        if (thing) {
+                            qCDebug(dcSomfyTahoma()) << "Found existing awning:" << label << deviceUrl;
+                        } else {
+                            qCInfo(dcSomfyTahoma()) << "Found new awning:" << label << deviceUrl;
+                            ThingDescriptor descriptor(awningThingClassId, label, QString(), accountId);
+                            descriptor.setParams(ParamList() << Param(awningThingDeviceUrlParamTypeId, deviceUrl));
+                            unknownDevices.append(descriptor);
+                        }
+                    } else if (type == QStringLiteral("Light") && (deviceUrl.startsWith("io"))) {
+                        Thing *thing = myThings().findByParams(ParamList() << Param(lightThingDeviceUrlParamTypeId, deviceUrl));
+                        if (thing) {
+                            qCDebug(dcSomfyTahoma()) << "Found existing light:" << label << deviceUrl;
+                        } else {
+                            qCInfo(dcSomfyTahoma()) << "Found new light:" << label << deviceUrl;
+                            ThingDescriptor descriptor(lightThingClassId, label, QString(), accountId);
+                            descriptor.setParams(ParamList() << Param(lightThingDeviceUrlParamTypeId, deviceUrl));
+                            unknownDevices.append(descriptor);
+                        }
+                    } else if (type == QStringLiteral("ProtocolGateway") ||
+                               type == QStringLiteral("Alarm") ||
+                               (type == QStringLiteral("Light") && deviceUrl.startsWith("hue"))) {
+                        continue;
                     } else {
                         qCInfo(dcSomfyTahoma()) << "Found unsupperted Somfy device:" << label << type << deviceUrl;
                     }
@@ -134,7 +158,9 @@ void IntegrationPluginSomfyTahoma::setupThing(ThingSetupInfo *info)
     else if (info->thing()->thingClassId() == gatewayThingClassId ||
              info->thing()->thingClassId() == rollershutterThingClassId ||
              info->thing()->thingClassId() == venetianblindThingClassId ||
-             info->thing()->thingClassId() == garagedoorThingClassId) {
+             info->thing()->thingClassId() == garagedoorThingClassId ||
+             info->thing()->thingClassId() == awningThingClassId ||
+             info->thing()->thingClassId() == lightThingClassId) {
         info->finish(Thing::ThingErrorNoError);
     }
 }
@@ -156,9 +182,12 @@ void IntegrationPluginSomfyTahoma::postSetupThing(Thing *thing)
         deviceUrl = QUrl(thing->paramValue(rollershutterThingDeviceUrlParamTypeId).toString());
     } else if (thing->thingClassId() == venetianblindThingClassId) {
         deviceUrl = QUrl(thing->paramValue(venetianblindThingDeviceUrlParamTypeId).toString());
-    }
-    else if (thing->thingClassId() == garagedoorThingClassId) {
-           deviceUrl = QUrl(thing->paramValue(garagedoorThingDeviceUrlParamTypeId).toString());
+    } else if (thing->thingClassId() == garagedoorThingClassId) {
+        deviceUrl = QUrl(thing->paramValue(garagedoorThingDeviceUrlParamTypeId).toString());
+    } else if (thing->thingClassId() == awningThingClassId) {
+        deviceUrl = QUrl(thing->paramValue(awningThingDeviceUrlParamTypeId).toString());
+    } else if (thing->thingClassId() == lightThingClassId) {
+        deviceUrl = QUrl(thing->paramValue(lightThingDeviceUrlParamTypeId).toString());
     }
     if (!deviceUrl.isEmpty()) {
         Thing *gateway = myThings().findByParams(ParamList() << Param(gatewayThingGatewayIdParamTypeId, deviceUrl.host()));
@@ -177,11 +206,11 @@ void IntegrationPluginSomfyTahoma::refreshAccount(Thing *thing)
         hardwareManager()->pluginTimerManager()->unregisterTimer(m_eventPollTimer[thing]);
     }
 
-    SomfyTahomaGetRequest *setupRequest = new SomfyTahomaGetRequest(hardwareManager()->networkManager(), "/setup", this);
-    connect(setupRequest, &SomfyTahomaGetRequest::error, this, [this, thing](){
+    SomfyTahomaRequest *setupRequest = createSomfyTahomaGetRequest(hardwareManager()->networkManager(), "/setup", this);
+    connect(setupRequest, &SomfyTahomaRequest::error, this, [this, thing](){
         markDisconnected(thing);
     });
-    connect(setupRequest, &SomfyTahomaGetRequest::finished, this, [this, thing](const QVariant &result){
+    connect(setupRequest, &SomfyTahomaRequest::finished, this, [this, thing](const QVariant &result){
         thing->setStateValue(tahomaLoggedInStateTypeId, true);
         thing->setStateValue(tahomaConnectedStateTypeId, true);
         foreach (const QVariant &gatewayVariant, result.toMap()["gateways"].toList()) {
@@ -201,29 +230,29 @@ void IntegrationPluginSomfyTahoma::refreshAccount(Thing *thing)
         }
     });
 
-    SomfyTahomaPostRequest *eventRegistrationRequest = new SomfyTahomaPostRequest(hardwareManager()->networkManager(), "/events/register", "application/json", QByteArray(), this);
-    connect(eventRegistrationRequest, &SomfyTahomaPostRequest::error, this, [this, thing](){
+    SomfyTahomaRequest *eventRegistrationRequest = createSomfyTahomaPostRequest(hardwareManager()->networkManager(), "/events/register", "application/json", QByteArray(), this);
+    connect(eventRegistrationRequest, &SomfyTahomaRequest::error, this, [this, thing](){
         qCWarning(dcSomfyTahoma()) << "Failed to register for events.";
         markDisconnected(thing);
     });
-    connect(eventRegistrationRequest, &SomfyTahomaPostRequest::finished, this, [this, thing](const QVariant &result){
+    connect(eventRegistrationRequest, &SomfyTahomaRequest::finished, this, [this, thing](const QVariant &result){
         thing->setStateValue(tahomaConnectedStateTypeId, true);
         QString eventListenerId = result.toMap()["id"].toString();
         m_eventPollTimer[thing] = hardwareManager()->pluginTimerManager()->registerTimer(2 /*sec*/);
         connect(m_eventPollTimer[thing], &PluginTimer::timeout, thing, [this, thing, eventListenerId](){
-            SomfyTahomaEventFetchRequest *eventFetchRequest = new SomfyTahomaEventFetchRequest(hardwareManager()->networkManager(), eventListenerId, this);
-            connect(eventFetchRequest, &SomfyTahomaEventFetchRequest::error, thing, [this, thing](QNetworkReply::NetworkError error){
+            SomfyTahomaRequest *eventFetchRequest = createSomfyTahomaEventFetchRequest(hardwareManager()->networkManager(), eventListenerId, this);
+            connect(eventFetchRequest, &SomfyTahomaRequest::error, thing, [this, thing](QNetworkReply::NetworkError error){
                 markDisconnected(thing);
                 if (error == QNetworkReply::AuthenticationRequiredError) {
                     qCInfo(dcSomfyTahoma()) << "Failed to fetch events: Authentication expired, reauthenticating";
-                    SomfyTahomaLoginRequest *request = createLoginRequestWithStoredCredentials(thing);
-                    connect(request, &SomfyTahomaLoginRequest::error, this, [this, thing](){
+                    SomfyTahomaRequest *request = createLoginRequestWithStoredCredentials(thing);
+                    connect(request, &SomfyTahomaRequest::error, this, [this, thing](){
                         // This is a fatal error. The user needs to reconfigure the account to provide new credentials.
                         qCWarning(dcSomfyTahoma()) << "Failed to reauthenticate";
                         hardwareManager()->pluginTimerManager()->unregisterTimer(m_eventPollTimer[thing]);
                         m_eventPollTimer.remove(thing);
                     });
-                    connect(request, &SomfyTahomaLoginRequest::finished, this, [this, thing](const QVariant &/*result*/){
+                    connect(request, &SomfyTahomaRequest::finished, this, [this, thing](const QVariant &/*result*/){
                         qCInfo(dcSomfyTahoma()) << "Reauthentication successful";
                         refreshAccount(thing);
                     });
@@ -231,7 +260,7 @@ void IntegrationPluginSomfyTahoma::refreshAccount(Thing *thing)
                     qCWarning(dcSomfyTahoma()) << "Failed to fetch events:" << error;
                 }
             });
-            connect(eventFetchRequest, &SomfyTahomaEventFetchRequest::finished, thing, [this, thing](const QVariant &result){
+            connect(eventFetchRequest, &SomfyTahomaRequest::finished, thing, [this, thing](const QVariant &result){
                 thing->setStateValue(tahomaConnectedStateTypeId, true);
                 restoreChildConnectedState(thing);
                 if (!result.toList().empty()) {
@@ -274,6 +303,12 @@ void IntegrationPluginSomfyTahoma::handleEvents(const QVariantList &eventList)
                     thing->setStateValue(garagedoorMovingStateTypeId, true);
                     things.append(thing);
                 }
+                thing = myThings().findByParams(ParamList() << Param(awningThingDeviceUrlParamTypeId, action.toMap()["deviceURL"]));
+                if (thing) {
+                    thing->setStateValue(awningMovingStateTypeId, true);
+                    things.append(thing);
+                    continue;
+                }
             }
             qCDebug(dcSomfyTahoma()) << "ExecutionRegisteredEvent" << eventMap["execId"];
             m_currentExecutions.insert(eventMap["execId"].toString(), things);
@@ -287,6 +322,8 @@ void IntegrationPluginSomfyTahoma::handleEvents(const QVariantList &eventList)
                     thing->setStateValue(venetianblindMovingStateTypeId, false);
                 } else if (thing->thingClassId() == garagedoorThingClassId) {
                     thing->setStateValue(garagedoorMovingStateTypeId, false);
+                } else if (thing->thingClassId() == awningThingClassId) {
+                    thing->setStateValue(awningMovingStateTypeId, false);
                 }
             }
 
@@ -395,6 +432,42 @@ void IntegrationPluginSomfyTahoma::updateThingStates(const QString &deviceUrl, c
         }
         return;
     }
+    thing = myThings().findByParams(ParamList() << Param(awningThingDeviceUrlParamTypeId, deviceUrl));
+    if (thing) {
+        foreach (const QVariant &stateVariant, stateList) {
+            QVariantMap stateMap = stateVariant.toMap();
+            if (stateMap["name"] == "core:DeploymentState") {
+                thing->setStateValue(awningPercentageStateTypeId, stateMap["value"]);
+            } else if (stateMap["name"] == "core:StatusState") {
+                thing->setStateValue(awningConnectedStateTypeId, stateMap["value"] == "available");
+                pluginStorage()->beginGroup(thing->id().toString());
+                pluginStorage()->setValue("connected", stateMap["value"] == "available");
+                pluginStorage()->endGroup();
+            } else if (stateMap["name"] == "core:RSSILevelState") {
+                thing->setStateValue(awningSignalStrengthStateTypeId, stateMap["value"]);
+            }
+        }
+        return;
+    }
+    thing = myThings().findByParams(ParamList() << Param(lightThingDeviceUrlParamTypeId, deviceUrl));
+    if (thing) {
+        foreach (const QVariant &stateVariant, stateList) {
+            QVariantMap stateMap = stateVariant.toMap();
+            if (stateMap["name"] == "core:OnOffState") {
+                thing->setStateValue(lightPowerStateTypeId, stateMap["value"] == "on");
+            } else if (stateMap["name"] == "core:LightIntensityState") {
+                thing->setStateValue(lightBrightnessStateTypeId, stateMap["value"]);
+            } else if (stateMap["name"] == "core:StatusState") {
+                thing->setStateValue(lightConnectedStateTypeId, stateMap["value"] == "available");
+                pluginStorage()->beginGroup(thing->id().toString());
+                pluginStorage()->setValue("connected", stateMap["value"] == "available");
+                pluginStorage()->endGroup();
+            } else if (stateMap["name"] == "core:RSSILevelState") {
+                thing->setStateValue(lightSignalStrengthStateTypeId, stateMap["value"]);
+            }
+        }
+        return;
+    }
 }
 
 void IntegrationPluginSomfyTahoma::executeAction(ThingActionInfo *info)
@@ -448,6 +521,26 @@ void IntegrationPluginSomfyTahoma::executeAction(ThingActionInfo *info)
         } else if (info->action().actionTypeId() == garagedoorStopActionTypeId) {
             actionName = "stop";
         }
+    } else if (info->thing()->thingClassId() == awningThingClassId) {
+        deviceUrl = info->thing()->paramValue(awningThingDeviceUrlParamTypeId).toString();
+        if (info->action().actionTypeId() == awningPercentageActionTypeId) {
+            actionName = "setDeployment";
+            actionParameters = { info->action().param(awningPercentageActionPercentageParamTypeId).value().toInt() };
+        } else if (info->action().actionTypeId() == awningOpenActionTypeId) {
+            actionName = "deploy";
+        } else if (info->action().actionTypeId() == awningCloseActionTypeId) {
+            actionName = "undeploy";
+        } else if (info->action().actionTypeId() == awningStopActionTypeId) {
+            actionName = "stop";
+        }
+    } else if (info->thing()->thingClassId() == lightThingClassId) {
+        deviceUrl = info->thing()->paramValue(lightThingDeviceUrlParamTypeId).toString();
+        if (info->action().actionTypeId() == lightPowerActionTypeId) {
+            actionName = info->action().param(lightPowerActionPowerParamTypeId).value().toBool() ? "on" : "off";
+        } else if (info->action().actionTypeId() == lightBrightnessActionTypeId) {
+            actionName = "setIntensity";
+            actionParameters = { info->action().param(lightBrightnessActionBrightnessParamTypeId).value().toInt() };
+        }
     }
 
     if (!actionName.isEmpty()) {
@@ -458,11 +551,11 @@ void IntegrationPluginSomfyTahoma::executeAction(ThingActionInfo *info)
                                                {"commands", QJsonArray{QJsonObject{{"name", actionName},
                                                                                    {"parameters", actionParameters}}}}}}}
         }};
-        SomfyTahomaPostRequest *request = new SomfyTahomaPostRequest(hardwareManager()->networkManager(), "/exec/apply", "application/json", jsonRequest.toJson(QJsonDocument::Compact), this);
-        connect(request, &SomfyTahomaPostRequest::error, info, [info](){
+        SomfyTahomaRequest *request = createSomfyTahomaPostRequest(hardwareManager()->networkManager(), "/exec/apply", "application/json", jsonRequest.toJson(QJsonDocument::Compact), this);
+        connect(request, &SomfyTahomaRequest::error, info, [info](){
             info->finish(Thing::ThingErrorHardwareFailure);
         });
-        connect(request, &SomfyTahomaPostRequest::finished, info, [this, info](const QVariant &result){
+        connect(request, &SomfyTahomaRequest::finished, info, [this, info](const QVariant &result){
             qCInfo(dcSomfyTahoma()) << "Action started" << info->thing() << info->action().actionTypeId();
             m_pendingActions.insert(result.toMap()["execId"].toString(), info);
         });
@@ -471,13 +564,13 @@ void IntegrationPluginSomfyTahoma::executeAction(ThingActionInfo *info)
     }
 }
 
-SomfyTahomaLoginRequest *IntegrationPluginSomfyTahoma::createLoginRequestWithStoredCredentials(Thing *thing)
+SomfyTahomaRequest *IntegrationPluginSomfyTahoma::createLoginRequestWithStoredCredentials(Thing *thing)
 {
     pluginStorage()->beginGroup(thing->id().toString());
     QString username = pluginStorage()->value("username").toString();
     QString password = pluginStorage()->value("password").toString();
     pluginStorage()->endGroup();
-    return new SomfyTahomaLoginRequest(hardwareManager()->networkManager(), username, password, this);
+    return createSomfyTahomaLoginRequest(hardwareManager()->networkManager(), username, password, this);
 }
 
 void IntegrationPluginSomfyTahoma::markDisconnected(Thing *thing)
@@ -492,6 +585,10 @@ void IntegrationPluginSomfyTahoma::markDisconnected(Thing *thing)
         thing->setStateValue(venetianblindConnectedStateTypeId, false);
     } else if (thing->thingClassId() == garagedoorThingClassId) {
         thing->setStateValue(garagedoorConnectedStateTypeId, false);
+    } else if (thing->thingClassId() == awningThingClassId) {
+        thing->setStateValue(awningConnectedStateTypeId, false);
+    } else if (thing->thingClassId() == lightThingClassId) {
+        thing->setStateValue(lightConnectedStateTypeId, false);
     }
     foreach (Thing *child, myThings().filterByParentId(thing->id())) {
         markDisconnected(child);
@@ -510,6 +607,10 @@ void IntegrationPluginSomfyTahoma::restoreChildConnectedState(Thing *thing)
             thing->setStateValue(venetianblindConnectedStateTypeId, pluginStorage()->value("connected").toBool());
         } else if (thing->thingClassId() == garagedoorThingClassId) {
             thing->setStateValue(garagedoorConnectedStateTypeId, pluginStorage()->value("connected").toBool());
+        } else if (thing->thingClassId() == awningThingClassId) {
+            thing->setStateValue(awningConnectedStateTypeId, pluginStorage()->value("connected").toBool());
+        } else if (thing->thingClassId() == lightThingClassId) {
+            thing->setStateValue(lightConnectedStateTypeId, pluginStorage()->value("connected").toBool());
         }
     }
     pluginStorage()->endGroup();

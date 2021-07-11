@@ -7,6 +7,10 @@
         <source>Fingerprint could not be scanned. Please try again.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Help me, I&apos;m stuck!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Simulation</name>
@@ -47,8 +51,6 @@ The name of the EventType ({b7ff029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass
 ----------
 The name of the EventType ({9faaffe5-6a76-47d2-a14a-550f60390245}) of ThingClass colorBulb
 ----------
-The name of the EventType ({94a7d50c-df3b-4590-a89e-9dae40ad84fa}) of ThingClass thermostat
-----------
 The name of the EventType ({b786029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass evCharger
 ----------
 The name of the EventType ({e1910c53-a6bc-434b-9caa-0d08e214c122}) of ThingClass heating
@@ -63,8 +65,6 @@ The name of the EventType ({fa63c0b9-10e5-4280-9cc2-243bf27c05ad}) of ThingClass
 The name of the ActionType ({b7ff029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass socket
 ----------
 The name of the ActionType ({9faaffe5-6a76-47d2-a14a-550f60390245}) of ThingClass colorBulb
-----------
-The name of the ActionType ({94a7d50c-df3b-4590-a89e-9dae40ad84fa}) of ThingClass thermostat
 ----------
 The name of the ActionType ({b786029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass evCharger
 ----------
@@ -96,7 +96,9 @@ The name of the EventType ({10c735fd-7b81-484a-a148-76ea0da840f0}) of ThingClass
     </message>
     <message>
         <source>Battery level changed</source>
-        <extracomment>The name of the EventType ({4979b1a8-7f1e-4b65-9c35-187045c42a8f}) of ThingClass contactSensor
+        <extracomment>The name of the EventType ({e17a25db-1e32-479e-8802-7fab6b91b44f}) of ThingClass cleaningRobot
+----------
+The name of the EventType ({4979b1a8-7f1e-4b65-9c35-187045c42a8f}) of ThingClass contactSensor
 ----------
 The name of the EventType ({6a7ecb09-135c-4be2-8c36-f2a71711ea05}) of ThingClass gardenSensor
 ----------
@@ -160,7 +162,11 @@ The name of the EventType ({e66aba37-2647-4b6b-8740-d59eb98d846c}) of ThingClass
         <source>Open</source>
         <extracomment>The name of the ActionType ({17860291-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass rollerShutter
 ----------
+The name of the ActionType ({20259935-c39b-42d3-888b-ffdb98800a8d}) of ThingClass simpleShutter
+----------
 The name of the ActionType ({508c8f1b-aa1d-43d8-badb-0c9d219025b3}) of ThingClass extendedAwning
+----------
+The name of the ActionType ({4347b46b-4048-4f3a-b45d-71d99c15c30d}) of ThingClass venetianBlind
 ----------
 The name of the ActionType ({b4379ab7-5fc2-45b6-8214-5855b040ee1a}) of ThingClass extendedBlind
 ----------
@@ -171,12 +177,16 @@ The name of the ActionType ({1786029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClas
     </message>
     <message>
         <source>Stop</source>
-        <extracomment>The name of the ActionType ({2786029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass garageGate</extracomment>
+        <extracomment>The name of the ActionType ({7c310908-75ee-47b2-b2c1-90b85eed4694}) of ThingClass simpleShutter
+----------
+The name of the ActionType ({2786029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass garageGate</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Close</source>
-        <extracomment>The name of the ActionType ({3786029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass garageGate</extracomment>
+        <extracomment>The name of the ActionType ({b1f9b62a-1987-4d2b-af88-e64710cbf626}) of ThingClass simpleShutter
+----------
+The name of the ActionType ({3786029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass garageGate</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -190,6 +200,8 @@ The name of the ActionType ({1786029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClas
 ----------
 The name of the ActionType ({41fdeba2-8d2f-46ce-8f2d-b8c31bdf90ff}) of ThingClass extendedAwning
 ----------
+The name of the ActionType ({06be8ad4-24e5-4c03-9502-cda165a01bc4}) of ThingClass venetianBlind
+----------
 The name of the ActionType ({fd63d8bf-ffde-4343-bbdc-1645c94017dc}) of ThingClass extendedBlind
 ----------
 The name of the ActionType ({7f1bdeef-a57c-4b82-80ad-e3e31f16027f}) of ThingClass simpleBlind</extracomment>
@@ -200,6 +212,8 @@ The name of the ActionType ({7f1bdeef-a57c-4b82-80ad-e3e31f16027f}) of ThingClas
         <extracomment>The name of the ActionType ({37860293-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass rollerShutter
 ----------
 The name of the ActionType ({79ec0271-5361-4f0f-a458-bf22e570c9ac}) of ThingClass extendedAwning
+----------
+The name of the ActionType ({61cadeae-810e-43f5-a6b5-e85fcaefde9c}) of ThingClass venetianBlind
 ----------
 The name of the ActionType ({316c17e6-01a8-45c4-921d-7773b2d441a4}) of ThingClass extendedBlind
 ----------
@@ -297,11 +311,6 @@ The name of the StateType ({45c0de32-b519-47d7-9f82-e5f09d1542d4}) of ThingClass
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Charging amount changed</source>
-        <extracomment>The name of the EventType ({c977e60a-e820-4647-addb-cf0b39732ffb}) of ThingClass battery</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Max charging power changed</source>
         <extracomment>The name of the EventType ({bdf328a6-eebc-4b67-8165-551bc21e9be6}) of ThingClass battery</extracomment>
         <translation type="unfinished"></translation>
@@ -343,12 +352,6 @@ The name of the ParamType (ThingClass: colorBulb, ActionType: power, ID: {9faaff
 The name of the ParamType (ThingClass: colorBulb, EventType: power, ID: {9faaffe5-6a76-47d2-a14a-550f60390245})
 ----------
 The name of the StateType ({9faaffe5-6a76-47d2-a14a-550f60390245}) of ThingClass colorBulb
-----------
-The name of the ParamType (ThingClass: thermostat, ActionType: power, ID: {94a7d50c-df3b-4590-a89e-9dae40ad84fa})
-----------
-The name of the ParamType (ThingClass: thermostat, EventType: power, ID: {94a7d50c-df3b-4590-a89e-9dae40ad84fa})
-----------
-The name of the StateType ({94a7d50c-df3b-4590-a89e-9dae40ad84fa}) of ThingClass thermostat
 ----------
 The name of the ParamType (ThingClass: evCharger, ActionType: power, ID: {b786029d-f3a6-4b47-978a-ac1a581aac0f})
 ----------
@@ -447,7 +450,11 @@ The name of the StateType ({10c735fd-7b81-484a-a148-76ea0da840f0}) of ThingClass
     </message>
     <message>
         <source>Battery critical</source>
-        <extracomment>The name of the ParamType (ThingClass: contactSensor, EventType: batteryCritical, ID: {8d87413f-b625-4b77-aa95-2029b4bfb741})
+        <extracomment>The name of the ParamType (ThingClass: cleaningRobot, EventType: batteryCritical, ID: {f68f35f8-85c9-49ca-8ac1-50579653704e})
+----------
+The name of the StateType ({f68f35f8-85c9-49ca-8ac1-50579653704e}) of ThingClass cleaningRobot
+----------
+The name of the ParamType (ThingClass: contactSensor, EventType: batteryCritical, ID: {8d87413f-b625-4b77-aa95-2029b4bfb741})
 ----------
 The name of the StateType ({8d87413f-b625-4b77-aa95-2029b4bfb741}) of ThingClass contactSensor
 ----------
@@ -493,7 +500,7 @@ The name of the StateType ({e66aba37-2647-4b6b-8740-d59eb98d846c}) of ThingClass
 ----------
 The name of the StateType ({47a16375-1027-42cc-82d3-56cbfdb1193c}) of ThingClass heatingRod
 ----------
-The name of the ParamType (ThingClass: motionDetector, EventType: active, ID: {5ab00bfc-7345-44a2-90d4-852c810e59ec})
+The name of the ParamType (ThingClass: motionDetector, EventType: isPresent, ID: {5ab00bfc-7345-44a2-90d4-852c810e59ec})
 ----------
 The name of the StateType ({5ab00bfc-7345-44a2-90d4-852c810e59ec}) of ThingClass motionDetector</extracomment>
         <translation type="unfinished"></translation>
@@ -551,14 +558,22 @@ The name of the StateType ({be0291ff-6041-433b-9121-a30ca4426b22}) of ThingClass
     </message>
     <message>
         <source>Battery level</source>
-        <extracomment>The name of the ParamType (ThingClass: battery, EventType: batteryLevel, ID: {30fd9fd9-1a6b-4698-93ac-6b2a1ba18500})
+        <extracomment>The name of the ParamType (ThingClass: cleaningRobot, EventType: batteryLevel, ID: {e17a25db-1e32-479e-8802-7fab6b91b44f})
+----------
+The name of the StateType ({e17a25db-1e32-479e-8802-7fab6b91b44f}) of ThingClass cleaningRobot
+----------
+The name of the ParamType (ThingClass: battery, EventType: batteryLevel, ID: {30fd9fd9-1a6b-4698-93ac-6b2a1ba18500})
 ----------
 The name of the StateType ({30fd9fd9-1a6b-4698-93ac-6b2a1ba18500}) of ThingClass battery</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Charging</source>
-        <extracomment>The name of the ParamType (ThingClass: battery, EventType: charging, ID: {c977e60a-e820-4647-addb-cf0b39732ffb})
+        <extracomment>The name of the ParamType (ThingClass: cleaningRobot, EventType: charging, ID: {f31930c5-0886-4152-9001-ae8e52f85b21})
+----------
+The name of the StateType ({f31930c5-0886-4152-9001-ae8e52f85b21}) of ThingClass cleaningRobot
+----------
+The name of the ParamType (ThingClass: battery, EventType: charging, ID: {c977e60a-e820-4647-addb-cf0b39732ffb})
 ----------
 The name of the StateType ({c977e60a-e820-4647-addb-cf0b39732ffb}) of ThingClass battery</extracomment>
         <translation type="unfinished"></translation>
@@ -680,6 +695,8 @@ The name of the StateType ({46543561-2690-4072-a6a3-795e1c4f49a8}) of ThingClass
 ----------
 The name of the EventType ({e4c92da3-da3e-40ea-907f-a93283426789}) of ThingClass extendedAwning
 ----------
+The name of the EventType ({16453cde-15c9-4133-a4fd-7da76735778c}) of ThingClass venetianBlind
+----------
 The name of the EventType ({18fc257c-6b7b-472c-b52a-acd4ba405bf2}) of ThingClass extendedBlind</extracomment>
         <translation type="unfinished"></translation>
     </message>
@@ -697,6 +714,12 @@ The name of the ParamType (ThingClass: extendedAwning, EventType: percentage, ID
 ----------
 The name of the StateType ({e4c92da3-da3e-40ea-907f-a93283426789}) of ThingClass extendedAwning
 ----------
+The name of the ParamType (ThingClass: venetianBlind, ActionType: percentage, ID: {16453cde-15c9-4133-a4fd-7da76735778c})
+----------
+The name of the ParamType (ThingClass: venetianBlind, EventType: percentage, ID: {16453cde-15c9-4133-a4fd-7da76735778c})
+----------
+The name of the StateType ({16453cde-15c9-4133-a4fd-7da76735778c}) of ThingClass venetianBlind
+----------
 The name of the ParamType (ThingClass: extendedBlind, ActionType: percentage, ID: {18fc257c-6b7b-472c-b52a-acd4ba405bf2})
 ----------
 The name of the ParamType (ThingClass: extendedBlind, EventType: percentage, ID: {18fc257c-6b7b-472c-b52a-acd4ba405bf2})
@@ -709,6 +732,8 @@ The name of the StateType ({18fc257c-6b7b-472c-b52a-acd4ba405bf2}) of ThingClass
         <extracomment>The name of the EventType ({fd94b07d-4631-450d-9f99-9e9221cc3602}) of ThingClass rollerShutter
 ----------
 The name of the EventType ({b2a888b3-c526-410f-bafc-9d6dc459dbf8}) of ThingClass extendedAwning
+----------
+The name of the EventType ({9dedaf04-3570-403e-b083-ec59dd08981a}) of ThingClass venetianBlind
 ----------
 The name of the EventType ({83559182-f3db-4a4a-8c70-d5fb3ceb57de}) of ThingClass extendedBlind</extracomment>
         <translation type="unfinished"></translation>
@@ -734,6 +759,8 @@ The name of the StateType ({b2a888b3-c526-410f-bafc-9d6dc459dbf8}) of ThingClass
         <extracomment>The name of the ActionType ({1386029d-f3a6-4b47-978a-ac1a581aac0f}) of ThingClass rollerShutter
 ----------
 The name of the ActionType ({e4c92da3-da3e-40ea-907f-a93283426789}) of ThingClass extendedAwning
+----------
+The name of the ActionType ({16453cde-15c9-4133-a4fd-7da76735778c}) of ThingClass venetianBlind
 ----------
 The name of the ActionType ({18fc257c-6b7b-472c-b52a-acd4ba405bf2}) of ThingClass extendedBlind</extracomment>
         <translation type="unfinished"></translation>
@@ -905,7 +932,11 @@ The name of the StateType ({49388b11-8076-4698-8091-5c5f5762fd08}) of ThingClass
     </message>
     <message>
         <source>moving</source>
-        <extracomment>The name of the ParamType (ThingClass: extendedBlind, EventType: moving, ID: {83559182-f3db-4a4a-8c70-d5fb3ceb57de})
+        <extracomment>The name of the ParamType (ThingClass: venetianBlind, EventType: moving, ID: {9dedaf04-3570-403e-b083-ec59dd08981a})
+----------
+The name of the StateType ({9dedaf04-3570-403e-b083-ec59dd08981a}) of ThingClass venetianBlind
+----------
+The name of the ParamType (ThingClass: extendedBlind, EventType: moving, ID: {83559182-f3db-4a4a-8c70-d5fb3ceb57de})
 ----------
 The name of the StateType ({83559182-f3db-4a4a-8c70-d5fb3ceb57de}) of ThingClass extendedBlind</extracomment>
         <translation type="unfinished"></translation>
@@ -995,6 +1026,181 @@ The name of the StateType ({bb02bb10-a933-4833-8a1d-40dda41691b2}) of ThingClass
     <message>
         <source>Door/window sensor</source>
         <extracomment>The name of the ThingClass ({14f6c41c-b1ba-4d83-b1b2-d764a62c8eed})</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Angle</source>
+        <extracomment>The name of the ParamType (ThingClass: venetianBlind, ActionType: angle, ID: {fe3c802d-253f-4594-b64c-14a8870d9828})
+----------
+The name of the ParamType (ThingClass: venetianBlind, EventType: angle, ID: {fe3c802d-253f-4594-b64c-14a8870d9828})
+----------
+The name of the StateType ({fe3c802d-253f-4594-b64c-14a8870d9828}) of ThingClass venetianBlind</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Angle changed</source>
+        <extracomment>The name of the EventType ({fe3c802d-253f-4594-b64c-14a8870d9828}) of ThingClass venetianBlind</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Battery entered or left critical state</source>
+        <extracomment>The name of the EventType ({f68f35f8-85c9-49ca-8ac1-50579653704e}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Charging changed</source>
+        <extracomment>The name of the EventType ({c977e60a-e820-4647-addb-cf0b39732ffb}) of ThingClass battery</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cleaning robot</source>
+        <extracomment>The name of the ThingClass ({67bc68f1-8131-471f-9aa3-392284064ea2})</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cooling on</source>
+        <extracomment>The name of the ParamType (ThingClass: thermostat, EventType: coolingOn, ID: {4c696205-392a-45ed-aab5-3b7f97ddf286})
+----------
+The name of the StateType ({4c696205-392a-45ed-aab5-3b7f97ddf286}) of ThingClass thermostat</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cooling turned on/off</source>
+        <extracomment>The name of the EventType ({4c696205-392a-45ed-aab5-3b7f97ddf286}) of ThingClass thermostat</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current temperature</source>
+        <extracomment>The name of the ParamType (ThingClass: thermostat, EventType: temperature, ID: {f3df52f0-ee1d-4163-a7b5-95d8f22b8841})
+----------
+The name of the StateType ({f3df52f0-ee1d-4163-a7b5-95d8f22b8841}) of ThingClass thermostat</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current temperature changed</source>
+        <extracomment>The name of the EventType ({f3df52f0-ee1d-4163-a7b5-95d8f22b8841}) of ThingClass thermostat</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heating on</source>
+        <extracomment>The name of the ParamType (ThingClass: thermostat, EventType: heatingOn, ID: {94a7d50c-df3b-4590-a89e-9dae40ad84fa})
+----------
+The name of the StateType ({94a7d50c-df3b-4590-a89e-9dae40ad84fa}) of ThingClass thermostat</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heating turned on/off</source>
+        <extracomment>The name of the EventType ({94a7d50c-df3b-4590-a89e-9dae40ad84fa}) of ThingClass thermostat</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last seen</source>
+        <extracomment>The name of the ParamType (ThingClass: motionDetector, EventType: lastSeenTime, ID: {17874952-a1ab-467f-9786-29ffe3196a8c})
+----------
+The name of the StateType ({17874952-a1ab-467f-9786-29ffe3196a8c}) of ThingClass motionDetector</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last seen changed</source>
+        <extracomment>The name of the EventType ({17874952-a1ab-467f-9786-29ffe3196a8c}) of ThingClass motionDetector</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause cleaning</source>
+        <extracomment>The name of the ActionType ({22c5aab2-6348-4a60-93b9-d09779b2366b}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plugged in</source>
+        <extracomment>The name of the ParamType (ThingClass: cleaningRobot, EventType: pluggedIn, ID: {f3b00428-9123-43a2-bc72-684e2eec692e})
+----------
+The name of the StateType ({f3b00428-9123-43a2-bc72-684e2eec692e}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plugged or unplugged</source>
+        <extracomment>The name of the EventType ({f3b00428-9123-43a2-bc72-684e2eec692e}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Return to base</source>
+        <extracomment>The name of the ActionType ({8f6831fb-1335-48e5-8235-e235feadf2b7}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Robot error</source>
+        <extracomment>The name of the ParamType (ThingClass: cleaningRobot, EventType: errorMessage, ID: {71d0eff8-160a-4cff-a349-4beb40c33129})
+----------
+The name of the StateType ({71d0eff8-160a-4cff-a349-4beb40c33129}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Robot error changed</source>
+        <extracomment>The name of the EventType ({71d0eff8-160a-4cff-a349-4beb40c33129}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Robot state</source>
+        <extracomment>The name of the ParamType (ThingClass: cleaningRobot, EventType: robotState, ID: {ec324f2a-582b-4bd2-a2c8-03d5f20aa4f9})
+----------
+The name of the StateType ({ec324f2a-582b-4bd2-a2c8-03d5f20aa4f9}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Robot state changed</source>
+        <extracomment>The name of the EventType ({ec324f2a-582b-4bd2-a2c8-03d5f20aa4f9}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set angle</source>
+        <extracomment>The name of the ActionType ({fe3c802d-253f-4594-b64c-14a8870d9828}) of ThingClass venetianBlind</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simple roller shutter</source>
+        <extracomment>The name of the ThingClass ({5f4e3fc9-afb1-45d0-86a2-8713d5894aee})</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simulate error</source>
+        <extracomment>The name of the ActionType ({da19677e-c04b-4114-a744-a14dee039c4f}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start cleaning</source>
+        <extracomment>The name of the ActionType ({4d12df39-e4d8-4dfe-aa8b-8c3dd5adb79b}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Started or stopped charging</source>
+        <extracomment>The name of the EventType ({f31930c5-0886-4152-9001-ae8e52f85b21}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop cleaning</source>
+        <extracomment>The name of the ActionType ({3c5c752b-429d-4749-9c69-89a6953bfd7d}) of ThingClass cleaningRobot</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Venetian blind</source>
+        <extracomment>The name of the ThingClass ({38757fee-ac55-403e-be53-bad5b97364c1})</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Water detected</source>
+        <extracomment>The name of the EventType ({764cbbbf-6a5c-4265-9424-fc9e6dd86fda}) of ThingClass waterSensor</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Water sensor</source>
+        <extracomment>The name of the ThingClass ({088aa0cb-61e8-46b6-b99d-699a29fd79c7})</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wet</source>
+        <extracomment>The name of the ParamType (ThingClass: waterSensor, EventType: waterDetected, ID: {764cbbbf-6a5c-4265-9424-fc9e6dd86fda})
+----------
+The name of the StateType ({764cbbbf-6a5c-4265-9424-fc9e6dd86fda}) of ThingClass waterSensor</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

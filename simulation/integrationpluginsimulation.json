@@ -54,7 +54,7 @@
                     "name": "temperatureSensor",
                     "displayName": "Temperature sensor",
                     "createMethods": ["user"],
-                    "interfaces": ["temperaturesensor", "humiditysensor", "batterylevel", "connectable"],
+                    "interfaces": ["temperaturesensor", "humiditysensor", "battery", "connectable"],
                     "paramTypes": [ ],
                     "stateTypes": [
                         {
@@ -787,7 +787,7 @@
                     "name": "smartMeter",
                     "displayName": "Smart Meter",
                     "createMethods": ["user"],
-                    "interfaces": ["extendedsmartmeterconsumer", "extendedsmartmeterproducer", "connectable" ],
+                    "interfaces": ["smartmeterconsumer", "smartmeterproducer", "connectable" ],
                     "paramTypes": [ ],
                     "stateTypes": [
                         {
@@ -801,8 +801,8 @@
                         {
                             "id": "d57f4d9c-759e-40eb-999e-a1acbc8df2b1",
                             "name": "currentPower",
-                            "displayName": "Current power flow",
-                            "displayNameEvent": "Power power flow changed",
+                            "displayName": "Current power usage",
+                            "displayNameEvent": "Power power usage changed",
                             "type": "double",
                             "unit": "Watt",
                             "defaultValue": 0
@@ -832,7 +832,7 @@
                     "name": "solarPanel",
                     "displayName": "Solar panel",
                     "createMethods": ["user"],
-                    "interfaces": ["extendedsmartmeterproducer"],
+                    "interfaces": ["smartmeterproducer"],
                     "paramTypes": [],
                     "stateTypes": [
                         {
@@ -886,10 +886,9 @@
                             "id": "c977e60a-e820-4647-addb-cf0b39732ffb",
                             "name": "charging",
                             "displayName": "Charging",
-                            "displayNameEvent": "Charging amount changed",
-                            "type": "double",
-                            "unit": "KiloWatt",
-                            "defaultValue": 0.70
+                            "displayNameEvent": "Charging changed",
+                            "type": "bool",
+                            "defaultValue": false
                         },
                         {
                             "id": "bdf328a6-eebc-4b67-8165-551bc21e9be6",
@@ -1215,6 +1214,94 @@
                             "displayNameEvent": "Water detected",
                             "type": "bool",
                             "defaultValue": false
+                        }
+                    ]
+                },
+                {
+                    "id": "67bc68f1-8131-471f-9aa3-392284064ea2",
+                    "name": "cleaningRobot",
+                    "displayName": "Cleaning robot",
+                    "createMethods": ["user"],
+                    "interfaces": ["cleaningrobot", "battery"],
+                    "stateTypes": [
+                        {
+                            "id": "ec324f2a-582b-4bd2-a2c8-03d5f20aa4f9",
+                            "name": "robotState",
+                            "displayName": "Robot state",
+                            "displayNameEvent": "Robot state changed",
+                            "type": "QString",
+                            "possibleValues": ["docked", "cleaning", "paused", "traveling", "stopped", "error"],
+                            "defaultValue": "docked"
+                        },
+                        {
+                            "id": "71d0eff8-160a-4cff-a349-4beb40c33129",
+                            "name": "errorMessage",
+                            "displayName": "Robot error",
+                            "displayNameEvent": "Robot error changed",
+                            "type": "QString",
+                            "defaultValue": ""
+                        },
+                        {
+                            "id": "f68f35f8-85c9-49ca-8ac1-50579653704e",
+                            "name": "batteryCritical",
+                            "displayName": "Battery critical",
+                            "displayNameEvent": "Battery entered or left critical state",
+                            "type": "bool",
+                            "defaultValue": false
+                        },
+                        {
+                            "id": "e17a25db-1e32-479e-8802-7fab6b91b44f",
+                            "name": "batteryLevel",
+                            "displayName": "Battery level",
+                            "displayNameEvent": "Battery level changed",
+                            "type": "int",
+                            "minValue": 0,
+                            "maxValue": 100,
+                            "unit": "Percentage",
+                            "defaultValue": 50
+                        },
+                        {
+                            "id": "f31930c5-0886-4152-9001-ae8e52f85b21",
+                            "name": "charging",
+                            "displayName": "Charging",
+                            "displayNameEvent": "Started or stopped charging",
+                            "type": "bool",
+                            "defaultValue": true
+                        },
+                        {
+                            "id": "f3b00428-9123-43a2-bc72-684e2eec692e",
+                            "name": "pluggedIn",
+                            "displayName": "Plugged in",
+                            "displayNameEvent": "Plugged or unplugged",
+                            "type": "bool",
+                            "defaultValue": true
+                        }
+                    ],
+                    "actionTypes": [
+                        {
+                            "id": "4d12df39-e4d8-4dfe-aa8b-8c3dd5adb79b",
+                            "name": "startCleaning",
+                            "displayName": "Start cleaning"
+                        },
+                        {
+                            "id": "22c5aab2-6348-4a60-93b9-d09779b2366b",
+                            "name": "pauseCleaning",
+                            "displayName": "Pause cleaning"
+                        },
+                        {
+                            "id": "3c5c752b-429d-4749-9c69-89a6953bfd7d",
+                            "name": "stopCleaning",
+                            "displayName": "Stop cleaning"
+                        },
+                        {
+                            "id": "8f6831fb-1335-48e5-8235-e235feadf2b7",
+                            "name": "returnToBase",
+                            "displayName": "Return to base"
+                        },
+                        {
+                            "id": "da19677e-c04b-4114-a744-a14dee039c4f",
+                            "name": "simulateError",
+                            "displayName": "Simulate error"
                         }
                     ]
                 }

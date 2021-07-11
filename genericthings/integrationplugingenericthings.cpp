@@ -181,24 +181,24 @@ void IntegrationPluginGenericThings::setupThing(ThingSetupInfo *info)
                 }
             }
         });
-    } else if (thing->thingClassId() == extendedSmartMeterConsumerThingClassId) {
+    } else if (thing->thingClassId() == smartMeterThingClassId) {
 
         QTimer* smartMeterTimer = new QTimer(this);
-        int timeframe = thing->setting(extendedSmartMeterConsumerSettingsImpulseTimeframeParamTypeId).toInt();
+        int timeframe = thing->setting(smartMeterSettingsImpulseTimeframeParamTypeId).toInt();
         smartMeterTimer->setInterval(timeframe * 1000);
         m_smartMeterTimer.insert(thing, smartMeterTimer);
         smartMeterTimer->start();
         connect(thing, &Thing::settingChanged, smartMeterTimer, [smartMeterTimer] (const ParamTypeId &paramTypeId, const QVariant &value) {
-            if (paramTypeId == extendedSmartMeterConsumerSettingsImpulseTimeframeParamTypeId) {
+            if (paramTypeId == smartMeterSettingsImpulseTimeframeParamTypeId) {
                 smartMeterTimer->setInterval(value.toInt() * 1000);
             }
         });
 
         connect(smartMeterTimer, &QTimer::timeout, thing, [this, smartMeterTimer, thing] {
-            double impulsePerKwh = thing->setting(extendedSmartMeterConsumerSettingsImpulsePerKwhParamTypeId).toDouble();
+            double impulsePerKwh = thing->setting(smartMeterSettingsImpulsePerKwhParamTypeId).toDouble();
             int interval = smartMeterTimer->interval()/1000;
             double power = (m_pulsesPerTimeframe.value(thing)/impulsePerKwh)/(interval/3600.00); // Power = Energy/Time; Energy = Impulses/ImpPerkWh
-            thing->setStateValue(extendedSmartMeterConsumerCurrentPowerStateTypeId, power*1000);
+            thing->setStateValue(smartMeterCurrentPowerStateTypeId, power*1000);
             m_pulsesPerTimeframe.insert(thing, 0);
         });
     } else if (thing->thingClassId() == extendedStatefulGaragedoorThingClassId) {
@@ -257,7 +257,15 @@ void IntegrationPluginGenericThings::setupThing(ThingSetupInfo *info)
         int operatingMode = sgReadyOperatingMode(relay1, relay2);
         thing->setStateValue(sgReadyOperatingModeStateTypeId, operatingMode);
         thing->setStateValue(sgReadyOperatingModeDescriptionStateTypeId, sgReadyOperatingModeDescription(operatingMode));
+    } else if  (thing->thingClassId() == batteryThingClassId) {
+        connect(thing, &Thing::settingChanged, [thing](const ParamTypeId &settingTypeId, const QVariant &value){
+            if (settingTypeId == batterySettingsCriticalLevelParamTypeId) {
+                int currentBatteryLevel = thing->stateValue(batteryBatteryLevelStateTypeId).toInt();
+                thing->setStateValue(batteryBatteryCriticalStateTypeId, currentBatteryLevel <= value.toInt());
+            }
+        });
     }
+
     info->finish(Thing::ThingErrorNoError);
 }
 
@@ -265,6 +273,34 @@ void IntegrationPluginGenericThings::executeAction(ThingActionInfo *info)
 {
     Thing *thing = info->thing();
     Action action = info->action();
+
+    if (thing->thingClassId() == genericThingClassId) {
+        if (action.actionTypeId() == genericAnalogInputActionTypeId) {
+            thing->setStateValue(genericAnalogInputStateTypeId, action.paramValue(genericAnalogInputActionAnalogInputParamTypeId));
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        }
+        if (action.actionTypeId() == genericAnalogOutputActionTypeId) {
+            thing->setStateValue(genericAnalogOutputStateTypeId, action.paramValue(genericAnalogOutputActionAnalogOutputParamTypeId));
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        }
+        if (action.actionTypeId() == genericDigitalInputActionTypeId) {
+            thing->setStateValue(genericDigitalInputStateTypeId, action.paramValue(genericDigitalInputActionDigitalInputParamTypeId));
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        }
+        if (action.actionTypeId() == genericDigitalOutputActionTypeId) {
+            thing->setStateValue(genericDigitalOutputStateTypeId, action.paramValue(genericDigitalOutputActionDigitalOutputParamTypeId));
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        }
+        if (action.actionTypeId() == genericStringStateActionTypeId) {
+            thing->setStateValue(genericStringStateStateTypeId, action.paramValue(genericStringStateActionStringStateParamTypeId));
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        }
+    }
 
     if (thing->thingClassId() == awningThingClassId) {
         if (action.actionTypeId() == awningOpenActionTypeId) {
@@ -499,6 +535,18 @@ void IntegrationPluginGenericThings::executeAction(ThingActionInfo *info)
         } else {
             Q_ASSERT_X(false, "executeAction", QString("Unhandled actionTypeId: %1").arg(action.actionTypeId().toString()).toUtf8());
         }
+    } else if (thing->thingClassId() == ventilationFlowThingClassId) {
+        if (action.actionTypeId() == ventilationFlowPowerActionTypeId) {
+            thing->setStateValue(ventilationFlowPowerStateTypeId, action.param(ventilationFlowPowerActionPowerParamTypeId).value());
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        } else if (action.actionTypeId() == ventilationFlowFlowRateActionTypeId) {
+            thing->setStateValue(ventilationFlowFlowRateStateTypeId, action.param(ventilationFlowFlowRateActionFlowRateParamTypeId).value());
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        } else {
+            Q_ASSERT_X(false, "executeAction", QString("Unhandled actionTypeId: %1").arg(action.actionTypeId().toString()).toUtf8());
+        }
     } else if (thing->thingClassId() == temperatureSensorThingClassId) {
         if (action.actionTypeId() == temperatureSensorInputActionTypeId) {
             double value = info->action().param(temperatureSensorInputActionInputParamTypeId).value().toDouble();
@@ -589,14 +637,14 @@ void IntegrationPluginGenericThings::executeAction(ThingActionInfo *info)
         } else {
             Q_ASSERT_X(false, "executeAction", QString("Unhandled actionTypeId: %1").arg(action.actionTypeId().toString()).toUtf8());
         }
-    } else if (thing->thingClassId() == extendedSmartMeterConsumerThingClassId) {
-        if (action.actionTypeId() == extendedSmartMeterConsumerImpulseInputActionTypeId) {
-            bool value = info->action().param(extendedSmartMeterConsumerImpulseInputActionImpulseInputParamTypeId).value().toBool();
-            thing->setStateValue(extendedSmartMeterConsumerImpulseInputStateTypeId, value);
-            int impulsePerKwh = info->thing()->setting(extendedSmartMeterConsumerSettingsImpulsePerKwhParamTypeId).toInt();
+    } else if (thing->thingClassId() == smartMeterThingClassId) {
+        if (action.actionTypeId() == smartMeterImpulseInputActionTypeId) {
+            bool value = info->action().param(smartMeterImpulseInputActionImpulseInputParamTypeId).value().toBool();
+            thing->setStateValue(smartMeterImpulseInputStateTypeId, value);
+            int impulsePerKwh = info->thing()->setting(smartMeterSettingsImpulsePerKwhParamTypeId).toInt();
             if (value) {
-                double currentEnergy = thing->stateValue(extendedSmartMeterConsumerTotalEnergyConsumedStateTypeId).toDouble();
-                thing->setStateValue(extendedSmartMeterConsumerTotalEnergyConsumedStateTypeId ,currentEnergy + (1.00/impulsePerKwh));
+                double currentEnergy = thing->stateValue(smartMeterTotalEnergyConsumedStateTypeId).toDouble();
+                thing->setStateValue(smartMeterTotalEnergyConsumedStateTypeId ,currentEnergy + (1.00/impulsePerKwh));
                 m_pulsesPerTimeframe[thing]++;
             }
             info->finish(Thing::ThingErrorNoError);
@@ -741,6 +789,31 @@ void IntegrationPluginGenericThings::executeAction(ThingActionInfo *info)
             info->finish(Thing::ThingErrorNoError);
             return;
         }
+    } else if (thing->thingClassId() == presenceSensorThingClassId) {
+        if (action.actionTypeId() == presenceSensorIsPresentActionTypeId) {
+            bool isPresent = action.paramValue(presenceSensorIsPresentActionIsPresentParamTypeId).toBool();
+            qCDebug(dcGenericThings()) << "Presence sensor is now" << (isPresent ? "present" : "not present");
+            thing->setStateValue(presenceSensorIsPresentStateTypeId, isPresent);
+            if (isPresent) {
+                thing->setStateValue(presenceSensorLastSeenTimeStateTypeId, QDateTime::currentDateTime().toMSecsSinceEpoch() / 1000);
+            }
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        }
+    } else if (thing->thingClassId() == batteryThingClassId) {
+        if (action.actionTypeId() == batteryBatteryLevelControlActionTypeId) {
+            int value = action.paramValue(batteryBatteryLevelControlActionBatteryLevelControlParamTypeId).toInt();
+            thing->setStateValue(batteryBatteryLevelStateTypeId, value);
+            thing->setStateValue(batteryBatteryLevelControlStateTypeId, value);
+            int criticalValue = thing->setting(batterySettingsCriticalLevelParamTypeId).toInt();
+            thing->setStateValue(batteryBatteryCriticalStateTypeId, value <= criticalValue);
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        } else if (action.actionTypeId() == batteryChargingActionTypeId) {
+            thing->setStateValue(batteryChargingStateTypeId, action.paramValue(batteryChargingActionChargingParamTypeId));
+            info->finish(Thing::ThingErrorNoError);
+            return;
+        }
     } else {
         Q_ASSERT_X(false, "executeAction", QString("Unhandled thingClassId: %1").arg(thing->thingClassId().toString()).toUtf8());
     }
@@ -756,9 +829,9 @@ void IntegrationPluginGenericThings::thingRemoved(Thing *thing)
         m_extendedBlindTargetPercentage.remove(thing);
         m_venetianBlindAngleTimer.take(thing)->deleteLater();
         m_venetianBlindTargetAngle.remove(thing);
-    } else if (thing->thingClassId() == extendedSmartMeterConsumerThingClassId) {
+    } else if (thing->thingClassId() == smartMeterThingClassId) {
         m_pulsesPerTimeframe.remove(thing);
-    } else if (thing->thingClassId() == extendedSmartMeterConsumerThingClassId) {
+    } else if (thing->thingClassId() == smartMeterThingClassId) {
         m_smartMeterTimer.take(thing)->deleteLater();
         m_pulsesPerTimeframe.remove(thing);
     }

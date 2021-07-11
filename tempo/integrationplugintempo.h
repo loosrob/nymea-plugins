@@ -28,48 +28,47 @@
 *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#ifndef DISCOVERY_H
-#define DISCOVERY_H
+#ifndef INTEGRATIONPLUGINTEMPO_H
+#define INTEGRATIONPLUGINTEMPO_H
 
-#include <QObject>
-#include <QProcess>
-#include <QHostInfo>
-#include <QTimer>
+#include "integrations/integrationplugin.h"
+#include "plugintimer.h"
 
-#include "host.h"
+#include "tempo.h"
 
-class Discovery : public QObject
+class IntegrationPluginTempo : public IntegrationPlugin
 {
     Q_OBJECT
+
+    Q_PLUGIN_METADATA(IID "io.nymea.IntegrationPlugin" FILE "integrationplugintempo.json")
+    Q_INTERFACES(IntegrationPlugin)
+
 public:
-    explicit Discovery(QObject *parent = nullptr);
+    explicit IntegrationPluginTempo();
 
-    void discoverHosts(int timeout);
-    void abort();
-    bool isRunning() const;
+    void startPairing(ThingPairingInfo *info) override;
+    void confirmPairing(ThingPairingInfo *info, const QString &username, const QString &secret) override;
 
-signals:
-    void finished(const QList<Host> &hosts);
+    void discoverThings(ThingDiscoveryInfo *info) override;
+    void setupThing(ThingSetupInfo *info) override;
+    void postSetupThing(Thing *thing) override;
+    void thingRemoved(Thing *thing) override;
 
 private:
-    QStringList getDefaultTargets();
+    PluginTimer *m_pluginTimer15min = nullptr;
 
-    void finishDiscovery();
+    QHash<ThingId, QList<Tempo::Worklog>> m_worklogBuffer;
+    QHash<ThingId, Tempo *> m_setupTempoConnections;
+    QHash<ThingId, Tempo *> m_tempoConnections;
 
 private slots:
-    void discoveryFinished(int exitCode, QProcess::ExitStatus exitStatus);
-    void hostLookupDone(const QHostInfo &info);
-    void arpLookupDone(int exitCode, QProcess::ExitStatus exitStatus);
-    void onTimeout();
+    void onConnectionChanged(bool connected);
+    void onAuthenticationStatusChanged(bool authenticated);
 
-private:
-    QList<QProcess*> m_discoveryProcesses;
-    QTimer m_timeoutTimer;
+    void onAccountsReceived(const QList<Tempo::Account> accounts);
+    void onTeamsReceived(const QList<Tempo::Team> teams);
 
-    QHash<QProcess*, Host*> m_pendingArpLookups;
-    QHash<QString, Host*> m_pendingNameLookups;
-    QList<Host*> m_scanResults;
+    void onAccountWorkloadReceived(const QString &accountKey, QList<Tempo::Worklog> workloads, int limit, int offset);
+    void onTeamWorkloadReceived(int teamId, QList<Tempo::Worklog> workloads, int limit, int offset);
 };
-
-#endif // DISCOVERY_H
-
+#endif // INTEGRATIONPLUGINTEMPO_H

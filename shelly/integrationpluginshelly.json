@@ -111,7 +111,7 @@
                     "name": "shelly1pm",
                     "displayName": "Shelly 1PM",
                     "createMethods": ["discovery"],
-                    "interfaces": [ "gateway", "extendedsmartmeterconsumer", "wirelessconnectable", "update" ],
+                    "interfaces": [ "gateway", "smartmeterconsumer", "wirelessconnectable", "update" ],
                     "paramTypes": [
                         {
                             "id": "6df5db8a-4e27-49e5-8cf9-78cb8497d831",
@@ -228,7 +228,7 @@
                     "name": "shelly1l",
                     "displayName": "Shelly 1L",
                     "createMethods": ["discovery"],
-                    "interfaces": [ "gateway", "extendedsmartmeterconsumer", "wirelessconnectable", "update" ],
+                    "interfaces": [ "gateway", "smartmeterconsumer", "wirelessconnectable", "update" ],
                     "paramTypes": [
                         {
                             "id": "afd5f2c5-dbe4-4d60-80a6-97b77264ad7c",
@@ -551,7 +551,7 @@
                     "name": "shellyPlug",
                     "displayName": "Shelly Plug/PlugS",
                     "createMethods": ["discovery"],
-                    "interfaces": [ "powersocket", "extendedsmartmeterconsumer", "wirelessconnectable", "update" ],
+                    "interfaces": [ "powersocket", "smartmeterconsumer", "wirelessconnectable", "update" ],
                     "paramTypes": [
                         {
                             "id": "bd5679fc-b761-4a56-a472-97717418c425",
@@ -939,7 +939,7 @@
                     "name": "shellyButton1",
                     "displayName": "Shelly button 1",
                     "createMethods": ["discovery"],
-                    "interfaces": ["longpressmultibutton", "wirelessconnectable", "batterylevel", "update"],
+                    "interfaces": ["longpressmultibutton", "wirelessconnectable", "battery", "update"],
                     "paramTypes": [
                         {
                             "id": "ef42a9f5-b6f4-4bb9-ad17-a9419be4a44e",
@@ -1266,7 +1266,7 @@
                     "name": "shellyHT",
                     "displayName": "Shelly H&T",
                     "createMethods": ["discovery"],
-                    "interfaces": ["temperaturesensor", "humiditysensor", "wirelessconnectable", "batterylevel", "update"],
+                    "interfaces": ["temperaturesensor", "humiditysensor", "wirelessconnectable", "battery", "update"],
                     "paramTypes": [
                         {
                             "id": "b6882bd5-7b1f-447b-9aa7-34aeeb538697",
@@ -1457,7 +1457,7 @@
                     "name": "shellyEm3",
                     "displayName": "Shelly 3EM",
                     "createMethods": ["discovery"],
-                    "interfaces": [ "extendedsmartmeterconsumer", "extendedsmartmeterproducer", "wirelessconnectable", "update"],
+                    "interfaces": [ "energymeter", "wirelessconnectable", "update"],
                     "paramTypes": [
                         {
                             "id": "a80894d2-dfba-4699-892d-081702b0f1f5",
@@ -1530,9 +1530,9 @@
                         },
                         {
                             "id": "432ba180-936d-4700-907e-766264bfdd35",
-                            "name": "phaseAPower",
-                            "displayName": "Power (Phase A)",
-                            "displayNameEvent": "Power (Phase A) changed",
+                            "name": "currentPowerPhaseA",
+                            "displayName": "Power usage (Phase A)",
+                            "displayNameEvent": "Power usage (Phase A) changed",
                             "type": "double",
                             "unit": "Watt",
                             "defaultValue": 0,
@@ -1540,7 +1540,7 @@
                         },
                         {
                             "id": "50be490b-ba5d-4b1f-806c-9e15b915c1eb",
-                            "name": "phaseAPowerFactor",
+                            "name": "powerFactorPhaseA",
                             "displayName": "Power factor (Phase A)",
                             "displayNameEvent": "Power factor (Phase A) changed",
                             "type": "double",
@@ -1548,7 +1548,7 @@
                         },
                         {
                             "id": "5fa79319-756b-4b2c-87b1-59ff996b8435",
-                            "name": "phaseACurrent",
+                            "name": "currentPhaseA",
                             "displayName": "Current (Phase A)",
                             "displayNameEvent": "Current (Phase A) changed",
                             "type": "double",
@@ -1558,7 +1558,7 @@
                         },
                         {
                             "id": "5977ffab-cdcf-409c-940b-aa0a59de84a5",
-                            "name": "phaseAVoltage",
+                            "name": "voltagePhaseA",
                             "displayName": "Voltage (Phase A)",
                             "displayNameEvent": "Voltage (Phase A) changed",
                             "type": "double",
@@ -1567,7 +1567,7 @@
                         },
                         {
                             "id": "ba25ef68-bb52-4e96-a8fb-137aae966104",
-                            "name": "phaseATotalEnergyConsumed",
+                            "name": "energyConsumedPhaseA",
                             "displayName": "Total consumed energy (Phase A)",
                             "displayNameEvent": "Total consumed energy (Phase A) changed",
                             "type": "double",
@@ -1576,7 +1576,7 @@
                         },
                         {
                             "id": "34562cd3-b178-4f68-903d-a01e20d0ad76",
-                            "name": "phaseATotalEnergyReturned",
+                            "name": "energyProducedPhaseA",
                             "displayName": "Total returned energy (Phase A)",
                             "displayNameEvent": "Total returned energy (Phase A) changed",
                             "type": "double",
@@ -1585,9 +1585,9 @@
                         },
                         {
                             "id": "02edeedb-8a93-41f8-8bc5-09031b7d2d4d",
-                            "name": "phaseBPower",
-                            "displayName": "Power (Phase B)",
-                            "displayNameEvent": "Power (Phase B) changed",
+                            "name": "currentPowerPhaseB",
+                            "displayName": "Power usage (Phase B)",
+                            "displayNameEvent": "Power usage (Phase B) changed",
                             "type": "double",
                             "unit": "Watt",
                             "defaultValue": 0,
@@ -1595,7 +1595,7 @@
                         },
                         {
                             "id": "f56504bb-0c6c-4425-831c-771b23aadf19",
-                            "name": "phaseBPowerFactor",
+                            "name": "powerFactorPhaseB",
                             "displayName": "Power factor (Phase B)",
                             "displayNameEvent": "Power factor (Phase B) changed",
                             "type": "double",
@@ -1603,7 +1603,7 @@
                         },
                         {
                             "id": "a4151601-fe77-418a-a2c1-6376e32da3bd",
-                            "name": "phaseBCurrent",
+                            "name": "currentPhaseB",
                             "displayName": "Current (Phase B)",
                             "displayNameEvent": "Current (Phase B) changed",
                             "type": "double",
@@ -1612,7 +1612,7 @@
                         },
                         {
                             "id": "7c846993-fb06-48ef-987c-7b35d9671070",
-                            "name": "phaseBVoltage",
+                            "name": "voltagePhaseB",
                             "displayName": "Voltage (Phase B)",
                             "displayNameEvent": "Voltage (Phase B) changed",
                             "type": "double",
@@ -1621,7 +1621,7 @@
                         },
                         {
                             "id": "6636e6a0-e3ca-4654-9506-4302c4e8eed7",
-                            "name": "phaseBTotalEnergyConsumed",
+                            "name": "energyConsumedPhaseB",
                             "displayName": "Total consumed energy (Phase B)",
                             "displayNameEvent": "Total consumed energy (Phase B) changed",
                             "type": "double",
@@ -1630,7 +1630,7 @@
                         },
                         {
                             "id": "d70a0d1a-cac1-4250-85fa-4859ad2dc947",
-                            "name": "phaseBTotalEnergyReturned",
+                            "name": "energyProducedPhaseB",
                             "displayName": "Total returned energy (Phase B)",
                             "displayNameEvent": "Total returned energy (Phase B) changed",
                             "type": "double",
@@ -1639,9 +1639,9 @@
                         },
                         {
                             "id": "82277a4e-49cc-45f4-8b29-470ce99333b6",
-                            "name": "phaseCPower",
-                            "displayName": "Power (Phase C)",
-                            "displayNameEvent": "Power (Phase C) changed",
+                            "name": "currentPowerPhaseC",
+                            "displayName": "Power usage (Phase C)",
+                            "displayNameEvent": "Power usage (Phase C) changed",
                             "type": "double",
                             "unit": "Watt",
                             "defaultValue": 0,
@@ -1649,7 +1649,7 @@
                         },
                         {
                             "id": "2e2c622f-1575-4d0b-a0c0-78bc03748c1e",
-                            "name": "phaseCPowerFactor",
+                            "name": "powerFactorPhaseC",
                             "displayName": "Power factor (Phase C)",
                             "displayNameEvent": "Power factor (Phase C) changed",
                             "type": "double",
@@ -1657,7 +1657,7 @@
                         },
                         {
                             "id": "ab78aa9c-aa73-4f5d-8d21-38c83c5e9e7c",
-                            "name": "phaseCCurrent",
+                            "name": "currentPhaseC",
                             "displayName": "Current (Phase C)",
                             "displayNameEvent": "Current (Phase C) changed",
                             "type": "double",
@@ -1666,7 +1666,7 @@
                         },
                         {
                             "id": "cd7af1b2-d5f0-4c2e-b85c-84f23ae1fbb9",
-                            "name": "phaseCVoltage",
+                            "name": "voltagePhaseC",
                             "displayName": "Voltage (Phase C)",
                             "displayNameEvent": "Voltage (Phase C) changed",
                             "type": "double",
@@ -1675,7 +1675,7 @@
                         },
                         {
                             "id": "452c2159-aa2f-4217-80e5-4b492b69671e",
-                            "name": "phaseCTotalEnergyConsumed",
+                            "name": "energyConsumedPhaseC",
                             "displayName": "Total consumed energy (Phase C)",
                             "displayNameEvent": "Total consumed energy (Phase C) changed",
                             "type": "double",
@@ -1684,7 +1684,7 @@
                         },
                         {
                             "id": "de248e26-b617-4d22-9175-752e2d695274",
-                            "name": "phaseCTotalEnergyReturned",
+                            "name": "energyProducedPhaseC",
                             "displayName": "Total returned energy (Phase C)",
                             "displayNameEvent": "Total returned energy (Phase C) changed",
                             "type": "double",
@@ -1738,6 +1738,131 @@
                             "id": "87772e43-1bf7-496b-b8be-46db39f71700",
                             "name": "reset",
                             "displayName": "Reset data"
+                        }
+                    ]
+                },
+                {
+                    "id": "a82737bb-f2d6-442e-a468-5acc0a2e4cd7",
+                    "name": "shellyMotion",
+                    "displayName": "Shelly Motion",
+                    "createMethods": ["discovery"],
+                    "interfaces": ["presencesensor", "lightsensor", "wirelessconnectable", "update", "battery"],
+                    "paramTypes": [
+                        {
+                            "id": "b92fe8ba-8bfb-4d9a-9fb9-8d55ace8cfb4",
+                            "name":"id",
+                            "displayName": "Shelly ID",
+                            "type": "QString",
+                            "readOnly": true
+                        },
+                        {
+                            "id": "ea210ec8-37ed-4479-9454-48cc06a1df88",
+                            "name": "username",
+                            "displayName": "Username (optional)",
+                            "type": "QString"
+                        },
+                        {
+                            "id": "b6a48fc4-5016-47d9-8454-c64686120ee1",
+                            "name": "password",
+                            "displayName": "Password (optional)",
+                            "type": "QString"
+                        }
+                    ],
+                    "stateTypes": [
+                        {
+                            "id": "45c0cc07-0e13-449c-86a7-ab65d5cdf637",
+                            "name": "isPresent",
+                            "displayName": "Person is present",
+                            "displayNameEvent": "Presence detected",
+                            "type": "bool",
+                            "defaultValue": false
+                        },
+                        {
+                            "id": "a1e12487-ebab-4993-a075-78275aac7b0d",
+                            "name": "lightIntensity",
+                            "displayName": "Light intensity",
+                            "displayNameEvent": "Light intensity changed",
+                            "type": "double",
+                            "unit": "Lux",
+                            "defaultValue": 0
+                        },
+                        {
+                            "id": "76438c2d-9742-4680-9139-d4b4e988cfd2",
+                            "name": "vibration",
+                            "displayName": "Vibration",
+                            "displayNameEvent": "Vibration detected",
+                            "type": "bool",
+                            "defaultValue": false
+                        },
+                        {
+                            "id": "9ed997fa-1ec8-44d2-ac44-c99d4e259dae",
+                            "name": "connected",
+                            "displayName": "Connected",
+                            "displayNameEvent": "Connected or disconnected",
+                            "type": "bool",
+                            "defaultValue": false,
+                            "cached": false
+                        },
+                        {
+                            "id": "ecc61ce2-cb66-47ce-a65c-3b9e43ce6fdc",
+                            "name": "signalStrength",
+                            "displayName": "Signal strength",
+                            "displayNameEvent": "Signal strength changed",
+                            "type": "uint",
+                            "unit": "Percentage",
+                            "minValue": 0,
+                            "maxValue": 100,
+                            "defaultValue": 100
+                        },                        {
+                            "id": "a604a66c-3143-45ce-a6e3-17a339f428ab",
+                            "name": "updateStatus",
+                            "displayName": "Update status",
+                            "displayNameEvent": "Update status changed",
+                            "type": "QString",
+                            "possibleValues": ["idle", "available", "updating"],
+                            "defaultValue": "idle"
+                        },
+                        {
+                            "id": "e2d98172-5833-454b-9b4b-04693c6b9232",
+                            "name": "currentVersion",
+                            "displayName": "Current firmware version",
+                            "displayNameEvent": "Current firmware version changed",
+                            "type": "QString",
+                            "defaultValue": ""
+                        },
+                        {
+                            "id": "0c9e8da4-1b1c-4047-8e9d-c5c580bcf43f",
+                            "name": "availableVersion",
+                            "displayName": "Available firmware version",
+                            "displayNameEvent": "Available firmware version changed",
+                            "type": "QString",
+                            "defaultValue": ""
+                        },
+                        {
+                            "id": "1d03941e-9c41-446b-b698-f8dff335bf11",
+                            "name": "batteryCritical",
+                            "displayName": "Battery level critical",
+                            "displayNameEvent": "Battery entered critical state",
+                            "type": "bool",
+                            "defaultValue": false
+                        },
+                        {
+                            "id": "f6d89aa6-7dba-4bb0-89cf-36d85208933f",
+                            "name": "batteryLevel",
+                            "displayName": "Battery level",
+                            "displayNameEvent": "Battery level changed",
+                            "type": "int",
+                            "minValue": 0,
+                            "maxValue": 100,
+                            "defaultValue": 0,
+                            "unit": "Percentage"
+                        }
+                    ],
+                    "actionTypes": [
+                        {
+                            "id": "17327674-f160-44e1-8a3d-fc2b6e1ee319",
+                            "name": "performUpdate",
+                            "displayName": "Start firmware update"
                         }
                     ]
                 },
@@ -1805,7 +1930,7 @@
                     "name": "shellyGenericPM",
                     "displayName": "Shelly connected device",
                     "createMethods": ["auto"],
-                    "interfaces": ["power", "extendedsmartmeterconsumer", "wirelessconnectable"],
+                    "interfaces": ["power", "smartmeterconsumer", "wirelessconnectable"],
                     "settingsTypes": [
                         {
                             "id": "8c60a23c-5e5b-42ba-abae-aeeb3d379d79",
@@ -1940,7 +2065,7 @@
                     "name": "shellyLightPM",
                     "displayName": "Shelly connected light",
                     "createMethods": ["auto"],
-                    "interfaces": ["light", "extendedsmartmeterconsumer", "wirelessconnectable"],
+                    "interfaces": ["light", "smartmeterconsumer", "wirelessconnectable"],
                     "settingsTypes": [
                         {
                             "id": "01cc242a-268d-4dd9-96ce-5502dd1bd430",
@@ -2075,7 +2200,7 @@
                     "name": "shellySocketPM",
                     "displayName": "Shelly connected power socket",
                     "createMethods": ["auto"],
-                    "interfaces": ["powersocket", "extendedsmartmeterconsumer", "wirelessconnectable"],
+                    "interfaces": ["powersocket", "smartmeterconsumer", "wirelessconnectable"],
                     "settingsTypes": [
                         {
                             "id": "9880a51b-57da-4b65-a0ec-23eb0fdcb8ac",
@@ -2152,7 +2277,7 @@
                     "name": "shellyRoller",
                     "displayName": "Shelly connected Roller Shutter",
                     "createMethods": ["auto"],
-                    "interfaces": ["extendedshutter", "extendedsmartmeterconsumer", "wirelessconnectable"],
+                    "interfaces": ["extendedshutter", "smartmeterconsumer", "wirelessconnectable"],
                     "paramTypes": [
                         {
                             "id": "281385a5-5084-4ded-80a4-66c0dc1096a8",

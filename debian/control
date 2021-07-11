@@ -12,7 +12,6 @@ Build-depends: libboblight-dev,
                nymea-dev-tools:native,
                pkg-config,
                python:any,
-               qt5-default,
                qtbase5-dev,
                qtconnectivity5-dev,
                libow-dev,
@@ -377,6 +376,21 @@ Description: nymea.io plugin for gpio
  This package will install the nymea.io plugin for gpio
 
 
+Package: nymea-plugin-goecharger
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         nymea-plugins-translations,
+Description: nymea.io plugin for the go-eCharger wallbox
+ The nymea daemon is a plugin based IoT (Internet of Things) server. The
+ server works like a translator for devices, things and services and
+ allows them to interact.
+ With the powerful rule engine you are able to connect any device available
+ in the system and create individual scenes and behaviors for your environment.
+ .
+ This package will install the nymea.io plugin for the go-eCharger wallbox
+
+
 Package: nymea-plugin-homeconnect
 Architecture: any
 Depends: ${shlibs:Depends},
@@ -478,6 +492,22 @@ Description: nymea.io plugin for a generic MQTT client
  in the system and create individual scenes and behaviors for your environment.
  .
  This package will install a generic MQTT client plugin for nymea.io
+
+
+Package: nymea-plugin-neatobotvac
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         nymea-plugins-translations,
+         python3-pip,
+Description: nymea.io plugin for neato
+ The nymea daemon is a plugin based IoT (Internet of Things) server. The
+ server works like a translator for devices, things and services and
+ allows them to interact.
+ With the powerful rule engine you are able to connect any device available
+ in the system and create individual scenes and behaviors for your environment.
+ .
+ This package will install the nymea.io plugin for Neato Botvac robots.
 
 
 Package: nymea-plugin-netatmo
@@ -700,6 +730,15 @@ Depends: ${shlibs:Depends},
          nymea-plugins-translations,
 Description: nymea.io plugin for Telegram
  This plugin allows nymea to send messages to telegram via the bot API.
+ 
+
+Package: nymea-plugin-tempo
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         nymea-plugins-translations,
+Description: nymea.io plugin for Tempo time tracking
+ This package will install the nymea.io plugin for Tempo time tracking.
 
 
 Package: nymea-plugin-tplink
@@ -962,11 +1001,15 @@ Description: nymea.io plugin for keba
  This package will install the nymea.io plugin for keba
 
 
-Package: nymea-plugin-remotessh
+Package: nymea-plugin-reversessh
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
+         sshpass,
          nymea-plugins-translations,
+Recommends: openssh-server
+Replaces: nymea-plugin-remotessh
+Conflicts: nymea-plugin-remotessh
 Description: nymea.io plugin to configure remotessh for your nymea:core
  The nymea daemon is a plugin based IoT (Internet of Things) server. The
  server works like a translator for devices, things and services and
@@ -1035,6 +1078,22 @@ Description: nymea.io plugin to monitor the ISS position
  in the system and create individual scenes and behaviors for your environment.
  .
  This package will install the nymea.io plugin for wheretheiss.at
+
+
+Package: nymea-plugin-zigbee-develco
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libnymea-zigbee1,
+         nymea-plugins-translations,
+Description: nymea.io zigbee plugin for develco things
+ The nymea daemon is a plugin based IoT (Internet of Things) server. The
+ server works like a translator for devices, things and services and
+ allows them to interact.
+ With the powerful rule engine you are able to connect any device available
+ in the system and create individual scenes and behaviors for your environment.
+ .
+ This package will install the nymea.io plugin for Develco
 
 
 Package: nymea-plugin-zigbee-lumi
@@ -1154,6 +1213,7 @@ Depends: nymea-plugin-anel,
          nymea-plugin-texasinstruments,
          nymea-plugin-telegram,
          nymea-plugin-nanoleaf,
+         nymea-plugin-neatobotvac,
          nymea-plugin-netatmo,
          nymea-plugin-networkdetector,
          nymea-plugin-nuki,
@@ -1164,6 +1224,7 @@ Depends: nymea-plugin-anel,
          nymea-plugin-pushnotifications,
          nymea-plugin-wakeonlan,
          nymea-plugin-tasmota,
+         nymea-plugin-tempo,
          nymea-plugin-tplink,
          nymea-plugin-wemo,
          nymea-plugin-elgato,
@@ -1189,7 +1250,8 @@ Description: Plugins for nymea IoT server - the default plugin collection
 Package: nymea-plugins-zigbee
 Section: libs    
 Architecture: all
-Depends: nymea-plugin-zigbee-lumi,
+Depends: nymea-plugin-zigbee-develco,
+         nymea-plugin-zigbee-lumi,
          nymea-plugin-zigbee-generic,
          nymea-plugin-zigbee-generic-lights,
          nymea-plugin-zigbee-philipshue,
